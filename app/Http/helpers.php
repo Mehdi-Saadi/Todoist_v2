@@ -77,11 +77,32 @@ if (! function_exists('controlDate')) {
 }
 
 if (! function_exists('addClassIfRouteIsActive')) {
-    function addClassIfRouteIsActive($key, $class) {
+    function addClassIfRouteIsActive($key, $class)
+    {
         if (is_array($key)) {
             return in_array(Route::currentRouteName(), $key) ? $class : '';
         }
 
         return Route::currentRouteName() === $key ? $class : '';
+    }
+}
+
+if (! function_exists('getNextMonDate')) {
+    function getNextMonDate($format): string
+    {
+        $date = Carbon::today()->timestamp;
+        // check if today is monday
+        if (date('D') === 'Mon') {
+            $date += 86400;
+        }
+
+        while (true) {
+            if (date('D', $date) === 'Mon') {
+                break;
+            }
+            $date += 86400;
+        }
+
+        return date($format, $date);
     }
 }

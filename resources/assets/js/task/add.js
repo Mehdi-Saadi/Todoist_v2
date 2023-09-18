@@ -59,7 +59,7 @@ function showSavedTask(parentRootId, task) {
                                                 <span class="w-6 h-6 mb-1"></span>
                                             </template>
                                             <template x-for="(date, dateIndex) in daysOfMonth" :key="dateIndex">
-                                                <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full" :disabled="isPassedDay(date)" :class="[isPassedDay(date) ? 'opacity-25' : 'transition ease-in-out duration-100 hover:bg-gray-100', isToday(date) ? 'text-red-800 font-bold' : 'text-gray-700']"></button>
+                                                <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full" :disabled="isPassedDay(date)" :class="[isPassedDay(date) ? 'opacity-25' : 'transition ease-in-out duration-100 hover:bg-gray-100', isToday(date) ? 'text-red-550 font-bold' : 'text-gray-700']"></button>
                                             </template>
                                         </div>
                                     </div>
