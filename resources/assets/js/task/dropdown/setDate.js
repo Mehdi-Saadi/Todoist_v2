@@ -25,6 +25,7 @@ export function setDate(selectedDate, taskId) {
             setTitleForDeadlineField(deadlineField, today);
 
             selectedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            toastAlert('', 'Due date updated to Today');
             break;
         case 'tomorrow':
             const tomorrow = new Date();
@@ -35,6 +36,7 @@ export function setDate(selectedDate, taskId) {
             setTitleForDeadlineField(deadlineField, tomorrow);
 
             selectedDate = `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${tomorrow.getDate()}`;
+            toastAlert('', 'Due date updated to Tomorrow');
             break;
         case 'this_weekend':
             const weekendDay = new Date();
@@ -51,6 +53,7 @@ export function setDate(selectedDate, taskId) {
             setTitleForDeadlineField(deadlineField, weekendDay);
 
             selectedDate = `${weekendDay.getFullYear()}-${weekendDay.getMonth() + 1}-${weekendDay.getDate()}`;
+            toastAlert('', 'Due date updated to Saturday');
             break;
         case 'next_week':
             const weekDay = new Date();
@@ -71,9 +74,9 @@ export function setDate(selectedDate, taskId) {
             setTitleForDeadlineField(deadlineField, weekDay);
 
             selectedDate = `${weekDay.getFullYear()}-${weekDay.getMonth() + 1}-${weekDay.getDate()}`;
+            toastAlert('', 'Due date updated to Monday');
     }
     data.date = selectedDate;
 
     ajaxRequest('put', '/task/update/date', data, function () {});
-    toastAlert('', 'Due date updated');
 }
