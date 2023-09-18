@@ -44,60 +44,62 @@ function showSavedTask(parentRootId, task) {
 
                         <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-64" id="task-due-date-${task.id}">
                             <div class="p-1">
-                                <div class="text-xs">
-                                    <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('today', ${task.id})">
-                                        <span class="flex items-center font-bold"><svg class="w-6 h-6 mr-2 text-green-700" viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><path fill-rule="nonzero" d="M6 4.5h12A1.5 1.5 0 0 1 19.5 6v2.5h-15V6A1.5 1.5 0 0 1 6 4.5z" opacity=".1"></path><path fill-rule="nonzero" d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6zm1 3h10a.5.5 0 1 1 0 1H7a.5.5 0 0 1 0-1z"></path><text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)" font-weight="500"><tspan x="8" y="15" text-anchor="middle">18</tspan></text></g></svg>Today</span>
-                                        <span class="my-auto">${DAY_NAMES[today.getDay()]}</span>
-                                    </button>
-                                    <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('tomorrow', ${task.id})">
-                                        <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-yellow-600" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="nonzero"><path d="M14 19a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" opacity=".1"></path><path d="M10.939 21.391a.5.5 0 0 1 .27.653L9.68 25.74a.5.5 0 1 1-.924-.383l1.53-3.695a.5.5 0 0 1 .654-.271zm6.776.27l1.53 3.696a.5.5 0 0 1-.923.383l-1.531-3.696a.5.5 0 0 1 .924-.382zM14 8a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-7.391 9.061a.5.5 0 0 1-.27.654l-3.696 1.53a.5.5 0 0 1-.383-.923l3.696-1.531a.5.5 0 0 1 .653.27zm15.435-.27l3.696 1.53a.5.5 0 0 1-.383.924l-3.695-1.53a.5.5 0 1 1 .382-.924zM14 9a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2.643 8.755l3.695 1.53a.5.5 0 1 1-.382.924L2.26 9.68a.5.5 0 1 1 .383-.924zm23.367.27a.5.5 0 0 1-.27.653l-3.696 1.531a.5.5 0 0 1-.382-.924l3.695-1.53a.5.5 0 0 1 .653.27zM9.678 2.26l1.531 3.696a.5.5 0 0 1-.924.382l-1.53-3.695a.5.5 0 1 1 .923-.383zm9.297-.27a.5.5 0 0 1 .27.653l-1.53 3.695a.5.5 0 1 1-.924-.382l1.53-3.696a.5.5 0 0 1 .654-.27z"></path></g></svg>Tomorrow</span>
-                                        <span class="my-auto">${DAY_NAMES[today.getDay() + 1]}</span>
-                                    </button>
-                                    <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('this_weekend', ${task.id})">
-                                        <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.3 6c2 0 3.7 1.6 3.7 3.7V11a2.5 2.5 0 013 2.4v5c0 1.4-1 2.5-2.4 2.5H21v.5a.5.5 0 01-1 0V21H8v.5a.5.5 0 01-1 0V21H4.5A2.5 2.5 0 012 18.5v-5a2.5 2.5 0 013-2.4V9.7C5 7.7 6.6 6 8.7 6h10.6zm4.2 6c-.8 0-1.4.6-1.5 1.4V17H6v-3.5a1.5 1.5 0 00-3-.1v5.1c0 .8.6 1.4 1.4 1.5h19.1c.8 0 1.4-.6 1.5-1.3v-5.2c0-.8-.7-1.5-1.5-1.5zm-4.2-5H8.7A2.7 2.7 0 006 9.5v2c.6.5 1 1.2 1 2V16h14v-2.5c0-.8.4-1.5 1-2V9.7C22 8.3 20.9 7 19.5 7h-.2z"></path></svg>This Weekend</span>
-                                        <span class="my-auto">Sat</span>
-                                    </button>
-                                    <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('next_week', ${task.id})">
-                                    <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-purple-600" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="nonzero"><path d="M6 3.5h16A2.5 2.5 0 0 1 24.5 6v2.5h-21V6A2.5 2.5 0 0 1 6 3.5z" opacity=".1"></path><path d="M22 3a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h16zm0 1H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-3.109 12.188l.007.01-.004-.005-.003-.005zM21.5 8a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zM19 16.52a.504.504 0 0 1-.023.131l-.015.04a.494.494 0 0 1-.05.093l-.014.018a.503.503 0 0 1-.033.04l-3.511 3.512a.5.5 0 0 1-.765-.638l.057-.07L17.292 17H9.5a.5.5 0 0 1-.492-.41L9 16.5a.5.5 0 0 1 .41-.492L9.5 16h7.792l-2.646-2.646a.5.5 0 0 1 .638-.765l.07.057 3.511 3.513.017.019.009.01-.027-.03.03.035.029.04a.52.52 0 0 1 .066.162l.008.052v.007l-.002-.026.005.072v.02z"></path></g></svg>Next Week</span>
-                                    <span class="my-auto">${getNextMondayDate()}</span>
-                                    </button>
-                                </div>
-                                <hr class="my-2">
-                                <div x-data="datepicker()" x-init="[initDate(), initDatepicker()]">
-                                    <div class="px-3 py-2">
+                                <div>
+                                    <div class="text-xs">
+                                        <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('today', ${task.id})">
+                                            <span class="flex items-center font-bold"><svg class="w-6 h-6 mr-2 text-green-700" viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><path fill-rule="nonzero" d="M6 4.5h12A1.5 1.5 0 0 1 19.5 6v2.5h-15V6A1.5 1.5 0 0 1 6 4.5z" opacity=".1"></path><path fill-rule="nonzero" d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6zm1 3h10a.5.5 0 1 1 0 1H7a.5.5 0 0 1 0-1z"></path><text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)" font-weight="500"><tspan x="8" y="15" text-anchor="middle">18</tspan></text></g></svg>Today</span>
+                                            <span class="my-auto">${DAY_NAMES[today.getDay()]}</span>
+                                        </button>
+                                        <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('tomorrow', ${task.id})">
+                                            <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-yellow-600" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="nonzero"><path d="M14 19a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" opacity=".1"></path><path d="M10.939 21.391a.5.5 0 0 1 .27.653L9.68 25.74a.5.5 0 1 1-.924-.383l1.53-3.695a.5.5 0 0 1 .654-.271zm6.776.27l1.53 3.696a.5.5 0 0 1-.923.383l-1.531-3.696a.5.5 0 0 1 .924-.382zM14 8a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm-7.391 9.061a.5.5 0 0 1-.27.654l-3.696 1.53a.5.5 0 0 1-.383-.923l3.696-1.531a.5.5 0 0 1 .653.27zm15.435-.27l3.696 1.53a.5.5 0 0 1-.383.924l-3.695-1.53a.5.5 0 1 1 .382-.924zM14 9a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2.643 8.755l3.695 1.53a.5.5 0 1 1-.382.924L2.26 9.68a.5.5 0 1 1 .383-.924zm23.367.27a.5.5 0 0 1-.27.653l-3.696 1.531a.5.5 0 0 1-.382-.924l3.695-1.53a.5.5 0 0 1 .653.27zM9.678 2.26l1.531 3.696a.5.5 0 0 1-.924.382l-1.53-3.695a.5.5 0 1 1 .923-.383zm9.297-.27a.5.5 0 0 1 .27.653l-1.53 3.695a.5.5 0 1 1-.924-.382l1.53-3.696a.5.5 0 0 1 .654-.27z"></path></g></svg>Tomorrow</span>
+                                            <span class="my-auto">${DAY_NAMES[today.getDay() + 1]}</span>
+                                        </button>
+                                        <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('this_weekend', ${task.id})">
+                                            <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.3 6c2 0 3.7 1.6 3.7 3.7V11a2.5 2.5 0 013 2.4v5c0 1.4-1 2.5-2.4 2.5H21v.5a.5.5 0 01-1 0V21H8v.5a.5.5 0 01-1 0V21H4.5A2.5 2.5 0 012 18.5v-5a2.5 2.5 0 013-2.4V9.7C5 7.7 6.6 6 8.7 6h10.6zm4.2 6c-.8 0-1.4.6-1.5 1.4V17H6v-3.5a1.5 1.5 0 00-3-.1v5.1c0 .8.6 1.4 1.4 1.5h19.1c.8 0 1.4-.6 1.5-1.3v-5.2c0-.8-.7-1.5-1.5-1.5zm-4.2-5H8.7A2.7 2.7 0 006 9.5v2c.6.5 1 1.2 1 2V16h14v-2.5c0-.8.4-1.5 1-2V9.7C22 8.3 20.9 7 19.5 7h-.2z"></path></svg>This Weekend</span>
+                                            <span class="my-auto">Sat</span>
+                                        </button>
+                                        <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" onclick="setDate('next_week', ${task.id})">
+                                        <span class="flex items-center font-bold"><svg class="w-5 h-5 mr-2 text-purple-600" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="nonzero"><path d="M6 3.5h16A2.5 2.5 0 0 1 24.5 6v2.5h-21V6A2.5 2.5 0 0 1 6 3.5z" opacity=".1"></path><path d="M22 3a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h16zm0 1H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-3.109 12.188l.007.01-.004-.005-.003-.005zM21.5 8a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zM19 16.52a.504.504 0 0 1-.023.131l-.015.04a.494.494 0 0 1-.05.093l-.014.018a.503.503 0 0 1-.033.04l-3.511 3.512a.5.5 0 0 1-.765-.638l.057-.07L17.292 17H9.5a.5.5 0 0 1-.492-.41L9 16.5a.5.5 0 0 1 .41-.492L9.5 16h7.792l-2.646-2.646a.5.5 0 0 1 .638-.765l.07.057 3.511 3.513.017.019.009.01-.027-.03.03.035.029.04a.52.52 0 0 1 .066.162l.008.052v.007l-.002-.026.005.072v.02z"></path></g></svg>Next Week</span>
+                                        <span class="my-auto">${getNextMondayDate()}</span>
+                                        </button>
+                                    </div>
+                                    <hr class="my-2">
+                                    <div x-data="datepicker()" x-init="[initDate(), initDatepicker()]">
+                                        <div class="px-3 py-2">
 
-                                        <div class="flex justify-between items-center mb-2">
-                                            <div class="text-sm font-bold text-gray-800">
-                                                <span x-text="MONTH_NAMES[month]"></span>
-                                                <span x-text="year"></span>
+                                            <div class="flex justify-between items-center mb-2">
+                                                <div class="text-sm font-bold text-gray-800">
+                                                    <span x-text="MONTH_NAMES[month]"></span>
+                                                    <span x-text="year"></span>
+                                                </div>
+                                                <div class="text-gray-500 space-x-1">
+                                                    <span class="transition ease-in-out duration-100 inline-flex rounded" :class="[month === currentMonth && year === currentYear ? 'opacity-25' : 'hover:bg-gray-100 cursor-pointer']" @click="previousMonth()">
+                                                        <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0z"></path><path fill="currentColor" fill-rule="nonzero" d="M10.707 12l3.647 3.646a.5.5 0 01-.708.708l-4-4a.5.5 0 010-.708l4-4a.5.5 0 01.708.708L10.707 12z"></path></g></svg>
+                                                    </span>
+                                                    <span class="cursor-pointer transition ease-in-out duration-100 inline-flex hover:bg-gray-100 rounded" @click="nextMonth()">
+                                                        <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 24V0h24v24z"></path><path fill="currentColor" fill-rule="nonzero" d="M13.293 12L9.646 8.354a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 12z"></path></g></svg>
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="text-gray-500 space-x-1">
-                                                <span class="transition ease-in-out duration-100 inline-flex rounded" :class="[month === currentMonth && year === currentYear ? 'opacity-25' : 'hover:bg-gray-100 cursor-pointer']" @click="previousMonth()">
-                                                    <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0z"></path><path fill="currentColor" fill-rule="nonzero" d="M10.707 12l3.647 3.646a.5.5 0 01-.708.708l-4-4a.5.5 0 010-.708l4-4a.5.5 0 01.708.708L10.707 12z"></path></g></svg>
-                                                </span>
-                                                <span class="cursor-pointer transition ease-in-out duration-100 inline-flex hover:bg-gray-100 rounded" @click="nextMonth()">
-                                                    <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 24V0h24v24z"></path><path fill="currentColor" fill-rule="nonzero" d="M13.293 12L9.646 8.354a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 12z"></path></g></svg>
-                                                </span>
+
+                                            <div class="grid grid-cols-7 text-center -mx-1.5 text-gray-500 mb-2 text-2xs">
+                                                <span>M</span>
+                                                <span>T</span>
+                                                <span>W</span>
+                                                <span>T</span>
+                                                <span>F</span>
+                                                <span>S</span>
+                                                <span>S</span>
                                             </div>
-                                        </div>
 
-                                        <div class="grid grid-cols-7 text-center -mx-1.5 text-gray-500 mb-2 text-2xs">
-                                            <span>M</span>
-                                            <span>T</span>
-                                            <span>W</span>
-                                            <span>T</span>
-                                            <span>F</span>
-                                            <span>S</span>
-                                            <span>S</span>
-                                        </div>
-
-                                        <div class="grid grid-cols-7 text-center mb-3 -mx-1.5">
-                                            <template x-for="blankDay in blankDays">
-                                                <span class="w-6 h-6 mb-1"></span>
-                                            </template>
-                                            <template x-for="(date, dateIndex) in daysOfMonth" :key="dateIndex">
-                                                <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full" :disabled="isPassedDay(date)" :class="[isPassedDay(date) ? 'opacity-25' : 'transition ease-in-out duration-100 hover:bg-gray-100', isToday(date) ? 'text-red-550 font-bold' : 'text-gray-700']"></button>
-                                            </template>
+                                            <div class="grid grid-cols-7 text-center mb-3 -mx-1.5">
+                                                <template x-for="blankDay in blankDays">
+                                                    <span class="w-6 h-6 mb-1"></span>
+                                                </template>
+                                                <template x-for="(date, dateIndex) in daysOfMonth" :key="dateIndex">
+                                                    <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full" :disabled="isPassedDay(date)" :class="[isPassedDay(date) ? 'opacity-25' : 'transition ease-in-out duration-100 hover:bg-gray-100', isToday(date) ? 'text-red-550 font-bold' : 'text-gray-700']"></button>
+                                                </template>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
