@@ -30,14 +30,6 @@
                     <x-dropdown.button type="button"><x-icon.pencil class="w-5 h-5 mr-2"/>Edit task</x-dropdown.button>
                     <hr class="my-1">
                     <div class="flex flex-col mx-2">
-                        <span class="text-xs">Due date</span>
-                        <div class="flex space-x-3 mb-1 mt-2">
-                            <x-button.header-tool onclick="setDate('today', {{ $task->id }})" title="Today" class="p-0.5 text-green-700"><x-icon.calendar.today class="w-7 h-7"/></x-button.header-tool>
-                            <x-button.header-tool onclick="setDate('tomorrow', {{ $task->id }})" title="Tomorrow" class="p-0.5 text-yellow-600"><x-icon.sun class="w-6 h-6"/></x-button.header-tool>
-                            <x-button.header-tool onclick="setDate('this_weekend', {{ $task->id }})" title="This Weekend" class="p-0.5 text-blue-600"><x-icon.sofa class="w-7 h-7"/></x-button.header-tool>
-                            <x-button.header-tool onclick="setDate('next_week', {{ $task->id }})" title="Next Week" class="p-0.5 text-purple-600"><x-icon.calendar.arrow class="w-6 h-6"/></x-button.header-tool>
-                            <x-button.header-tool title="More" class="p-0.5"><x-icon.ellipsis-horizontal-outline class="w-6 h-6"/></x-button.header-tool>
-                        </div>
                         <span class="text-xs">Priority</span>
                         <div class="flex space-x-2 mb-1 mt-2">
                             <x-button.header-tool title="Priority 1" onclick="setPriority(1, {{ $task->id }}, this)" class="p-1 text-red-600 {{ $task->color === '#db4035' ? 'ring-1 ring-gray-200' : '' }}"><x-icon.flag-solid class="w-6 h-6"/></x-button.header-tool>
