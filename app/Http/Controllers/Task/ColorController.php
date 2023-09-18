@@ -22,7 +22,7 @@ class ColorController extends Controller
 
         $data = $request->validate([
             'id' => [Rule::exists('tasks', 'id')->where('user_id', $user->id)],
-            'color' => [Rule::in(['#db4035', '#fad000', '#4073ff', '#808080'])],
+            'color' => [Rule::in(['#db4035', '#ff9933', '#4073ff', '#808080'])],
         ]);
 
         $task = $user->tasks()->find($data['id']);
