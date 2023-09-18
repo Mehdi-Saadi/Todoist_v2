@@ -24,7 +24,7 @@ class OrderController extends Controller
 
         $this->setOrder(auth()->user(), $request);
 
-        return 'serialized';
+        return 'sync';
     }
 
     /**

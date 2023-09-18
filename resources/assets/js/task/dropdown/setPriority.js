@@ -1,5 +1,4 @@
 import {ajaxRequest} from "../../helpers/ajaxRequest";
-import {toastAlert} from "../../helpers/alert.js";
 
 export function setPriority(priority, taskId, selectedBtn) {
     const taskCircle = document.getElementById(`task-circle-${taskId}`);
@@ -35,5 +34,4 @@ export function setPriority(priority, taskId, selectedBtn) {
             data.color = '#808080';
     }
     ajaxRequest('put', '/task/update/color', data, function () {});
-    toastAlert('', 'Priority updated');
 }

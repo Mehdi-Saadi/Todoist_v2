@@ -64,7 +64,7 @@ class TaskController extends Controller
 
         $this->destroyTasks(auth()->user(), $request);
 
-        return 'deleted';
+        return 'sync';
     }
 
     public function setTaskDone(Request $request): JsonResponse|string

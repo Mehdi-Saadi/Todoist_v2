@@ -38,6 +38,6 @@ class DateController extends Controller
             'deadline_time' => $data['time'],
         ]);
 
-        return 'updated';
+        return 'sync';
     }
 }

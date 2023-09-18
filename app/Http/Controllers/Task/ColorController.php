@@ -30,6 +30,6 @@ class ColorController extends Controller
             'color' => $data['color']
         ]);
 
-        return 'updated';
+        return 'sync';
     }
 }
