@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Task\ColorController;
+use App\Http\Controllers\Task\DateController;
+use App\Http\Controllers\Task\OrderController;
+use App\Http\Controllers\Task\TaskController;
+use App\Livewire\App;
+use App\Livewire\Today;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +23,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', App::class)->name('app');
+    Route::get('/today', Today::class)->name('today');
 });
+
+Route::prefix('/task')->middleware(['auth', 'verified'])->group(function () {
+    Route::post('/create', [TaskController::class, 'create']);
+    Route::delete('/destroy', [TaskController::class, 'destroy']);
+
+    Route::prefix('/update')->group(function () {
+        Route::put('/color', [ColorController::class, 'updateColor']);
+        Route::put('/date', [DateController::class, 'updateDate']);
+    });
+});
+
+Route::put('/tasks/update', [OrderController::class, 'updateAll']);
+
+Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
 
 require __DIR__.'/auth.php';
