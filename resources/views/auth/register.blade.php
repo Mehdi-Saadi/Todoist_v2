@@ -16,7 +16,7 @@
                 {{-- name --}}
                 <div class="relative">
                     <x-input.label for="name">Name</x-input.label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('name') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('name') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
                     @error('name') <x-input.error :message="$message"/> @enderror
                 </div>
                 {{-- email address --}}
