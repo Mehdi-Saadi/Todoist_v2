@@ -137,7 +137,6 @@ function addTask(taskFormId) {
         };
 
         ajaxRequest('post', "/task/create", data, function (task) {
-            task = JSON.parse(task);
             if(task.description === null) task.description = '';
 
             showSavedTask('nestedRoot', task);

@@ -21,22 +21,24 @@ class TaskController extends Controller
         $user = auth()->user();
 
         $data = $request->validate([
-            'archive_id' => [Rule::exists('archives', 'id')->where('user_id', $user->id)],
-            'color' => [Rule::in(['#db4035', '#fad000', '#4073ff', '#808080'])],
-            'label' => ['max:255'],
+//            'archive_id' => [Rule::exists('archives', 'id')->where('user_id', $user->id)],
+            'color' => [Rule::in(['#db4035', '#ff9933', '#4073ff', '#808080'])],
+//            'label' => ['max:255'],
             'name' => ['required'],
             'description' => ['max:255'],
         ]);
 
-        if($request['parent_id'] != 0) {
-            $data += $request->validate([
-                'parent_id' => [Rule::exists('tasks', 'id')->where('user_id', $user->id)],
-            ]);
-        } else {
-            $data += $request->validate([
-                'parent_id' => ['required'],
-            ]);
-        }
+        $data['archive_id'] = 2;
+
+//        if($request['parent_id'] != 0) {
+//            $data += $request->validate([
+//                'parent_id' => [Rule::exists('tasks', 'id')->where('user_id', $user->id)],
+//            ]);
+//        } else {
+//            $data += $request->validate([
+//                'parent_id' => ['required'],
+//            ]);
+//        }
 
         // add the submited task at end of list for first time
         $data['order'] = $user->tasks()->where('parent_id', $request['parent_id'])->max('order');
@@ -44,9 +46,9 @@ class TaskController extends Controller
 
         $task = $user->tasks()->create($data);
 
-        $user->labels()->firstOrCreate([
-
-        ]);
+//        $user->labels()->firstOrCreate([
+//
+//        ]);
 
         return response()->json($task);
     }
@@ -136,17 +138,17 @@ class TaskController extends Controller
     /**
      * delete all given tasks
      * @param $user
-     * @param $submittedTasks
+     * @param $submittedIDs
      * @return void
      */
-    protected function destroyTasks($user, $submittedTasks): void
+    protected function destroyTasks($user, $submittedIDs): void
     {
-        $submittedTasks = collect($submittedTasks);
-        $submittedTasks->each(function ($task) use ($user) {
-            $userTask = $user->tasks()->findOrFail($task['id']);
-            $userTask->delete();
-            if(! empty($task['children'])) {
-                $this->destroyTasks($user, $task['children']);
+        $submittedIDs = collect($submittedIDs);
+        $submittedIDs->each(function ($taskID) use ($user) {
+            $task = $user->tasks()->findOrFail($taskID);
+            $task->delete();
+            if(! empty($childrenIDs = $task->child->pluck('id'))) {
+                $this->destroyTasks($user, $childrenIDs);
             }
         });
     }
