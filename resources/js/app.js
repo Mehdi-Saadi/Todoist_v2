@@ -68,9 +68,10 @@ import {setPriority} from "../assets/js/task/dropdown/setPriority";
 window.setPriority = setPriority;
 import {setDate} from "../assets/js/task/dropdown/setDate";
 window.setDate = setDate;
-import {MONTH_NAMES, datepicker} from "../assets/js/task/dropdown/datepicker";
-window.MONTH_NAMES = MONTH_NAMES;
+import {datepicker} from "../assets/js/task/dropdown/datepicker";
 window.datepicker = datepicker;
+import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames.js";
+window.MONTH_NAMES = MONTH_NAMES;
 
 // must comment lines below for working livewire...
 // import Alpine from 'alpinejs';

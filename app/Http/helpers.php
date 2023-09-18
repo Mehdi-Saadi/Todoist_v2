@@ -87,8 +87,8 @@ if (! function_exists('addClassIfRouteIsActive')) {
     }
 }
 
-if (! function_exists('getNextMonDate')) {
-    function getNextMonDate($format): string
+if (! function_exists('getNextMondayDate')) {
+    function getNextMondayDate($format): string
     {
         $date = Carbon::today()->timestamp;
         // check if today is monday

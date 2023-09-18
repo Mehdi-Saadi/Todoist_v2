@@ -31,7 +31,7 @@
                         </x-dropdown.button>
                         <x-dropdown.button type="button" onclick="setDate('next_week', {{ $task->id }})" class="justify-between">
                             <span class="flex items-center font-bold"><x-icon.calendar.arrow class="w-5 h-5 mr-2 text-purple-600"/>Next Week</span>
-                            <span class="my-auto">{{ getNextMonDate('D d M') }}</span>
+                            <span class="my-auto">{{ getNextMondayDate('D d M') }}</span>
                         </x-dropdown.button>
                     </div>
                     <hr class="my-2">
