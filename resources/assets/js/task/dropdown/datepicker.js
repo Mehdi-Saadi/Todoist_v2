@@ -130,6 +130,14 @@ export function datepicker(taskID, deadlineDate = null) {
 
             data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
+            // convert new deadlineDate string to Date object
+            this.deadlineDate = new Date(data.date);
+            // open calendar on deadline month
+            this.month = this.deadlineDate.getMonth();
+            this.year = this.deadlineDate.getFullYear();
+            // update datepicker
+            this.initDatepicker();
+
             ajaxRequest('put', '/task/update/date', data, function () {});
         },
 
