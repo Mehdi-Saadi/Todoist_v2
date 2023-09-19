@@ -120,19 +120,7 @@ export function datepicker(taskID, deadlineDate = null) {
                     day = `${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`;
             }
 
-            setTitleForDeadlineField(deadlineField, date);
-
-            deadlineField.removeAttribute('class');
-            deadlineField.setAttribute('class', `flex items-center ${color}`);
-            deadlineField.innerHTML = `${calendar_dot}${day}`;
-
-            toastAlert('', `Due date updated to ${day}`);
-
-            data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-
-            this.resetDatepickerAfterDateSelect(data);
-
-            ajaxRequest('put', '/task/update/date', data, function () {});
+            this.resetAndSendData(deadlineField, date, color, day, data);
         },
 
         setDateShortcut(date) {
@@ -190,6 +178,12 @@ export function datepicker(taskID, deadlineDate = null) {
                 default:
                     return;
             }
+
+            this.resetAndSendData(deadlineField, date, color, day, data);
+        },
+
+        resetAndSendData(deadlineField, date, color, day, data) {
+            // reset deadline filed
             setTitleForDeadlineField(deadlineField, date);
 
             deadlineField.removeAttribute('class');
@@ -200,19 +194,15 @@ export function datepicker(taskID, deadlineDate = null) {
 
             data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-            this.resetDatepickerAfterDateSelect(data);
-
-            ajaxRequest('put', '/task/update/date', data, function () {});
-        },
-
-        resetDatepickerAfterDateSelect(data) {
             // convert new deadlineDate string to Date object
             this.deadlineDate = new Date(data.date);
             // open calendar on deadline month
             this.month = this.deadlineDate.getMonth();
             this.year = this.deadlineDate.getFullYear();
-            // update datepicker
+            // reset datepicker
             this.initDatepicker();
+
+            ajaxRequest('put', '/task/update/date', data, function () {});
         },
 
         initDatepicker() {
