@@ -1,9 +1,8 @@
 import {ajaxRequest} from "../../helpers/ajaxRequest.js";
 import {FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
-import {setTitleForDeadlineField} from "./setTitleForDeadlineField.js";
-
-const calendar_dot = `<svg class="w-4 h-4 mr-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2zM5 6a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H6a1 1 0 01-1-1V6zm12 10a1 1 0 11-2 0 1 1 0 012 0zM7 8a.5.5 0 000 1h10a.5.5 0 000-1H7z" fill="currentColor"></path></svg>`;
+import {setTitleForDeadlineField} from "./helpers/setTitleForDeadlineField.js";
+import {calendar_dot} from "./helpers/calendarDotSVG.js";
 
 export function datepicker(savedDate, taskID) {
     return {
