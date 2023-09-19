@@ -66,8 +66,6 @@ window.selectPriority = selectPriority;
 // task dropdown scripts
 import {setPriority} from "../assets/js/task/dropdown/setPriority";
 window.setPriority = setPriority;
-import {setDate} from "../assets/js/task/dropdown/setDate";
-window.setDate = setDate;
 import {datepicker} from "../assets/js/task/dropdown/datepicker";
 window.datepicker = datepicker;
 import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames.js";

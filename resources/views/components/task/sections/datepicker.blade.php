@@ -1,4 +1,23 @@
 <div x-data="datepicker({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]">
+    <div class="text-xs">
+        <x-dropdown.button type="button" @click="setDateShortcut('today')" class="justify-between">
+            <span class="flex items-center font-bold"><x-icon.calendar.today class="w-6 h-6 mr-2 text-green-700"/>Today</span>
+            <span class="my-auto">{{ date('D') }}</span>
+        </x-dropdown.button>
+        <x-dropdown.button type="button" @click="setDateShortcut('tomorrow')" class="justify-between">
+            <span class="flex items-center font-bold"><x-icon.sun class="w-5 h-5 mr-2 text-yellow-600"/>Tomorrow</span>
+            <span class="my-auto">{{ Carbon\Carbon::tomorrow()->format('D') }}</span>
+        </x-dropdown.button>
+        <x-dropdown.button type="button" @click="setDateShortcut('this_weekend')" class="justify-between">
+            <span class="flex items-center font-bold"><x-icon.sofa class="w-5 h-5 mr-2 text-blue-600"/>This Weekend</span>
+            <span class="my-auto">Sat</span>
+        </x-dropdown.button>
+        <x-dropdown.button type="button" @click="setDateShortcut('next_week')" class="justify-between">
+            <span class="flex items-center font-bold"><x-icon.calendar.arrow class="w-5 h-5 mr-2 text-purple-600"/>Next Week</span>
+            <span class="my-auto">{{ getNextMondayDate('D d M') }}</span>
+        </x-dropdown.button>
+    </div>
+    <hr class="my-2">
     <div class="px-3 py-2">
         {{-- header --}}
         <div class="flex justify-between items-center mb-2">

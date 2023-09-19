@@ -1,5 +1,5 @@
 import {ajaxRequest} from "../../helpers/ajaxRequest.js";
-import {FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
+import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "./helpers/setTitleForDeadlineField.js";
 import {calendar_dot} from "./helpers/calendarDotSVG.js";
@@ -73,6 +73,7 @@ export function datepicker(taskID, deadlineDate = null) {
 
             deadlineField.removeAttribute('class');
 
+            // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
             switch (date) {
@@ -130,6 +131,80 @@ export function datepicker(taskID, deadlineDate = null) {
 
             data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
+            this.resetDatepickerAfterDateSelect(data);
+
+            ajaxRequest('put', '/task/update/date', data, function () {});
+        },
+
+        setDateShortcut(date) {
+            const deadlineField = document.getElementById(`task-deadline-${taskID}`),
+                today = new Date();
+            let day,
+                color,
+                data = {
+                    id: taskID,
+                };
+
+            deadlineField.removeAttribute('class');
+
+            switch (date) {
+                case 'today':
+                    day = 'Today';
+                    color = 'text-green-700';
+                    date = today;
+                    break;
+                case 'tomorrow':
+                    date = new Date();
+                    date.setDate(today.getDate() + 1);
+
+                    day = 'Tomorrow';
+                    color = 'text-yellow-600';
+                    break;
+                case 'this_weekend':
+                    date = new Date();
+
+                    while (true) {
+                        if(DAY_NAMES[date.getDay()] === 'Sat') {
+                            break;
+                        }
+                        date.setDate(date.getDate() + 1);
+                    }
+
+                    day = 'Saturday';
+                    color = 'text-purple-600';
+                    break;
+                case 'next_week':
+                    date = new Date();
+
+                    if(DAY_NAMES[date.getDay()] === 'Mon') {
+                        date.setDate(date.getDate() + 1);
+                    }
+
+                    while (true) {
+                        if(DAY_NAMES[date.getDay()] === 'Mon') {
+                            break;
+                        }
+                        date.setDate(date.getDate() + 1);
+                    }
+
+                    day = 'Monday';
+                    color = 'text-purple-600';
+            }
+            setTitleForDeadlineField(deadlineField, date);
+
+            deadlineField.setAttribute('class', `flex items-center ${color}`);
+            deadlineField.innerHTML = `${calendar_dot + day}`;
+
+            toastAlert('', `Due date updated to ${day}`);
+
+            data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+            this.resetDatepickerAfterDateSelect(data);
+
+            ajaxRequest('put', '/task/update/date', data, function () {});
+        },
+
+        resetDatepickerAfterDateSelect(data) {
             // convert new deadlineDate string to Date object
             this.deadlineDate = new Date(data.date);
             // open calendar on deadline month
@@ -137,8 +212,6 @@ export function datepicker(taskID, deadlineDate = null) {
             this.year = this.deadlineDate.getFullYear();
             // update datepicker
             this.initDatepicker();
-
-            ajaxRequest('put', '/task/update/date', data, function () {});
         },
 
         initDatepicker() {
