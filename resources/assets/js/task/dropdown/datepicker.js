@@ -19,12 +19,16 @@ export function datepicker(taskID, deadlineDate = null) {
             const today = new Date();
             this.currentMonth = today.getMonth();
             this.currentYear = today.getFullYear();
-            this.month = this.currentMonth;
-            this.year = this.currentYear;
             this.timestampOfTodayInSec = new Date(this.year, this.month, today.getDate()) / 1000;
-            // convert deadlineDate string to Date object
             if (deadlineDate) {
+                // convert deadlineDate string to Date object
                 this.deadlineDate = new Date(deadlineDate);
+                // open calendar on deadline month
+                this.month = this.deadlineDate.getMonth();
+                this.year = this.deadlineDate.getFullYear();
+            } else {
+                this.month = this.currentMonth;
+                this.year = this.currentYear;
             }
         },
 
