@@ -39,14 +39,12 @@ export function datepicker(taskID, deadlineDate = null) {
             return today.toDateString() === date.toDateString();
         },
 
-        isPassedDay(date)
-        {
+        isPassedDay(date) {
             const timestampOfDate = new Date(this.year, this.month, date) / 1000;
             return timestampOfDate < this.timestampOfTodayInSec;
         },
 
-        isSelected(date)
-        {
+        isSelected(date) {
             if (! this.deadlineDate) {
                 return false;
             }
@@ -136,10 +134,10 @@ export function datepicker(taskID, deadlineDate = null) {
         },
 
         initDatepicker() {
-            let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-            let firstDayOfWeek = new Date(this.year, this.month).getDay(); // find where to start calendar day of week
-            let blankDaysArray = [];
-            let daysOfMonthArray = [];
+            let daysInMonth = new Date(this.year, this.month + 1, 0).getDate(),
+            firstDayOfWeek = new Date(this.year, this.month).getDay(), // find where to start calendar day of week
+            blankDaysArray = [],
+            daysOfMonthArray = [];
 
             if (firstDayOfWeek === 0) {
                 firstDayOfWeek = 7;
