@@ -52,7 +52,6 @@ export function datepicker(savedDate, taskID) {
             if (this.isPassedDay(date)) {return;}
 
             const deadlineField = document.getElementById(`task-deadline-${taskID}`);
-            // const today = new Date(this.timestampOfTodayInSec * 1000);
             let today = this.timestampOfTodayInSec,
                 tomorrow = today + 86400,
                 thirdDay = tomorrow + 86400,
@@ -119,10 +118,10 @@ export function datepicker(savedDate, taskID) {
 
             setTitleForDeadlineField(deadlineField, date);
 
-            deadlineField.setAttribute('class', 'flex items-center ' + color);
+            deadlineField.setAttribute('class', `flex items-center ${color}`);
             deadlineField.innerHTML = `${calendar_dot} ${day}`;
 
-            toastAlert('', 'Due date updated to ' + day);
+            toastAlert('', `Due date updated to ${day}`);
 
             data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
