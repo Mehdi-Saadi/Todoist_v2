@@ -1,4 +1,4 @@
-export function datepicker() {
+export function datepicker(selectedDate) {
     return {
         timestampOfToday: null,
         currentMonth: null,
@@ -19,15 +19,23 @@ export function datepicker() {
 
         isToday(date) {
             const today = new Date();
-            const d = new Date(this.year, this.month, date);
+            date = new Date(this.year, this.month, date);
 
-            return today.toDateString() === d.toDateString();
+            return today.toDateString() === date.toDateString();
         },
 
         isPassedDay(date)
         {
             const timestampOfDate = new Date(this.year, this.month, date) / 1000;
             return timestampOfDate < this.timestampOfToday;
+        },
+
+        isSelected(date)
+        {
+            date = new Date(this.year, this.month, date);
+            selectedDate = new Date(selectedDate);
+
+            return date.toDateString() === selectedDate.toDateString();
         },
 
         getDateValue(date) {

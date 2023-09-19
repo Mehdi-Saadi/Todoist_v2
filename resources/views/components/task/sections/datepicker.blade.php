@@ -1,4 +1,4 @@
-<div x-data="datepicker()" x-init="[initDate(), initDatepicker()]">
+<div x-data="datepicker('{{ $deadline }}')" x-init="[initDate(), initDatepicker()]">
     <div class="px-3 py-2">
         {{-- header --}}
         <div class="flex justify-between items-center mb-2">
@@ -31,7 +31,7 @@
                 <span class="w-6 h-6 mb-1"></span>
             </template>
             <template x-for="(date, dateIndex) in daysOfMonth" :key="dateIndex">
-                <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full" :disabled="isPassedDay(date)" :class="[isPassedDay(date) ? 'opacity-25' : 'transition ease-in-out duration-100 hover:bg-gray-100', isToday(date) ? 'text-red-550 font-bold' : 'text-gray-700']"></button>
+                <button type="button" x-text="date" @click="getDateValue(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full transition ease-in-out duration-100" :disabled="isPassedDay(date)" :class="isPassedDay(date) ? 'opacity-25' : (isToday(date) ? (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-red-550 font-bold hover:bg-gray-100') : (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-gray-700 hover:bg-gray-100'))"></button>
             </template>
         </div>
     </div>
