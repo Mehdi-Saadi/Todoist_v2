@@ -19,7 +19,6 @@ export function datepicker(taskID, deadlineDate = null) {
             const today = new Date();
             this.currentMonth = today.getMonth();
             this.currentYear = today.getFullYear();
-            this.timestampOfTodayInSec = new Date(this.year, this.month, today.getDate()) / 1000;
             if (deadlineDate) {
                 // convert deadlineDate string to Date object
                 this.deadlineDate = new Date(deadlineDate);
@@ -30,6 +29,7 @@ export function datepicker(taskID, deadlineDate = null) {
                 this.month = this.currentMonth;
                 this.year = this.currentYear;
             }
+            this.timestampOfTodayInSec = new Date(this.year, this.month, today.getDate()) / 1000;
         },
 
         isToday(date) {
