@@ -71,8 +71,6 @@ export function datepicker(taskID, deadlineDate = null) {
                     id: taskID
                 };
 
-            deadlineField.removeAttribute('class');
-
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
@@ -124,6 +122,7 @@ export function datepicker(taskID, deadlineDate = null) {
 
             setTitleForDeadlineField(deadlineField, date);
 
+            deadlineField.removeAttribute('class');
             deadlineField.setAttribute('class', `flex items-center ${color}`);
             deadlineField.innerHTML = `${calendar_dot}${day}`;
 
@@ -144,8 +143,6 @@ export function datepicker(taskID, deadlineDate = null) {
                 data = {
                     id: taskID,
                 };
-
-            deadlineField.removeAttribute('class');
 
             switch (date) {
                 case 'today':
@@ -189,9 +186,13 @@ export function datepicker(taskID, deadlineDate = null) {
 
                     day = 'Monday';
                     color = 'text-purple-600';
+                    break;
+                default:
+                    return;
             }
             setTitleForDeadlineField(deadlineField, date);
 
+            deadlineField.removeAttribute('class');
             deadlineField.setAttribute('class', `flex items-center ${color}`);
             deadlineField.innerHTML = `${calendar_dot + day}`;
 
