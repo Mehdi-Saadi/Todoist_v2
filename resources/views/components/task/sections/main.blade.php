@@ -35,7 +35,7 @@
                         </x-dropdown.button>
                     </div>
                     <hr class="my-2">
-                    <x-task.sections.datepicker :deadline="$task->deadline_date"/>
+                    <x-task.sections.datepicker :$task/>
                 </x-dropdown.menu>
             </x-dropdown.main>
 
