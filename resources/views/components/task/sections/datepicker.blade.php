@@ -1,4 +1,4 @@
-<div x-data="datepicker('{{ $task->deadline_date }}', {{ $task->id }})" x-init="[initDate(), initDatepicker()]">
+<div x-data="datepicker({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]">
     <div class="px-3 py-2">
         {{-- header --}}
         <div class="flex justify-between items-center mb-2">

@@ -4,7 +4,7 @@ import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "./helpers/setTitleForDeadlineField.js";
 import {calendar_dot} from "./helpers/calendarDotSVG.js";
 
-export function datepicker(savedDate, taskID) {
+export function datepicker(taskID, deadlineDate = null) {
     return {
         timestampOfTodayInSec: null,
         currentMonth: null,
@@ -13,6 +13,7 @@ export function datepicker(savedDate, taskID) {
         year: null,
         daysOfMonth: [],
         blankDays: [],
+        deadlineDate: null,
 
         initDate() {
             const today = new Date();
@@ -21,6 +22,10 @@ export function datepicker(savedDate, taskID) {
             this.month = this.currentMonth;
             this.year = this.currentYear;
             this.timestampOfTodayInSec = new Date(this.year, this.month, today.getDate()) / 1000;
+            // convert deadlineDate string to Date object
+            if (deadlineDate) {
+                this.deadlineDate = new Date(deadlineDate);
+            }
         },
 
         isToday(date) {
@@ -38,10 +43,12 @@ export function datepicker(savedDate, taskID) {
 
         isSelected(date)
         {
+            if (! this.deadlineDate) {
+                return false;
+            }
             date = new Date(this.year, this.month, date);
-            savedDate = new Date(savedDate);
 
-            return date.toDateString() === savedDate.toDateString();
+            return date.toDateString() === this.deadlineDate.toDateString();
         },
 
         setDate(date) {
