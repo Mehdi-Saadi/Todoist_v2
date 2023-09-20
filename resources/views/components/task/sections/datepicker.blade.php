@@ -1,4 +1,4 @@
-<div x-data="datepickerSD({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]">
+<div x-data="datepickerSave({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]">
     <div class="text-xs">
         <x-dropdown.button type="button" @click="saveDateShortcut('today')" class="justify-between">
             <span class="flex items-center font-bold"><x-icon.calendar.today class="w-6 h-6 mr-2 text-green-700"/>Today</span>

@@ -4,7 +4,7 @@ import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "./helpers/setTitleForDeadlineField.js";
 import {calendar_dot} from "./helpers/calendarDotSVG.js";
 
-export function datepickerSD(taskID, deadlineDate = null) {
+export function datepickerSave(taskID, deadlineDate = null) {
     return {
         timestampOfTodayInSec: null,
         currentMonth: null,
