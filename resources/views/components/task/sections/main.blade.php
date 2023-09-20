@@ -16,7 +16,7 @@
                 <x-button.header-tool data-dropdown-toggle="task-due-date-{{ $task->id }}" title="Set due date" class="p-1"><x-icon.calendar.dot class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
                 <x-dropdown.menu class="w-64" id="task-due-date-{{ $task->id }}">
-                    <x-task.sections.datepicker :$task/>
+                    <x-task.sections.datepicker x-data="datepickerSave({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]"/>
                 </x-dropdown.menu>
             </x-dropdown.main>
 

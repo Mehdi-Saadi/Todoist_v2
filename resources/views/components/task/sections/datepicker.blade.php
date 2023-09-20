@@ -1,18 +1,18 @@
-<div x-data="datepickerSave({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]">
+<div {{ $attributes }}>
     <div class="text-xs">
-        <x-dropdown.button type="button" @click="saveDateShortcut('today')" class="justify-between">
+        <x-dropdown.button type="button" @click="chooseDateShortcut('today')" class="justify-between">
             <span class="flex items-center font-bold"><x-icon.calendar.today class="w-6 h-6 mr-2 text-green-700"/>Today</span>
             <span class="my-auto">{{ date('D') }}</span>
         </x-dropdown.button>
-        <x-dropdown.button type="button" @click="saveDateShortcut('tomorrow')" class="justify-between">
+        <x-dropdown.button type="button" @click="chooseDateShortcut('tomorrow')" class="justify-between">
             <span class="flex items-center font-bold"><x-icon.sun class="w-5 h-5 mr-2 text-yellow-600"/>Tomorrow</span>
             <span class="my-auto">{{ Carbon\Carbon::tomorrow()->format('D') }}</span>
         </x-dropdown.button>
-        <x-dropdown.button type="button" @click="saveDateShortcut('this_weekend')" class="justify-between">
+        <x-dropdown.button type="button" @click="chooseDateShortcut('this_weekend')" class="justify-between">
             <span class="flex items-center font-bold"><x-icon.sofa class="w-5 h-5 mr-2 text-blue-600"/>This Weekend</span>
             <span class="my-auto">Sat</span>
         </x-dropdown.button>
-        <x-dropdown.button type="button" @click="saveDateShortcut('next_week')" class="justify-between">
+        <x-dropdown.button type="button" @click="chooseDateShortcut('next_week')" class="justify-between">
             <span class="flex items-center font-bold"><x-icon.calendar.arrow class="w-5 h-5 mr-2 text-purple-600"/>Next Week</span>
             <span class="my-auto">{{ getNextMondayDate('D d M') }}</span>
         </x-dropdown.button>
@@ -50,7 +50,7 @@
                 <span class="w-6 h-6 mb-1"></span>
             </template>
             <template x-for="(date, dateIndex) in daysOfMonth" :key="dateIndex">
-                <button type="button" x-text="date" @click="saveDate(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full transition ease-in-out duration-100" :disabled="isPassedDay(date)" :class="isPassedDay(date) ? 'opacity-25' : (isToday(date) ? (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-red-550 font-bold hover:bg-gray-100') : (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-gray-700 hover:bg-gray-100'))"></button>
+                <button type="button" x-text="date" @click="chooseDate(date)" class="w-6 h-6 mx-auto mb-1 flex justify-center items-center text-xs rounded-full transition ease-in-out duration-100" :disabled="isPassedDay(date)" :class="isPassedDay(date) ? 'opacity-25' : (isToday(date) ? (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-red-550 font-bold hover:bg-gray-100') : (isSelected(date) ? 'text-white font-bold bg-red-550' : 'text-gray-700 hover:bg-gray-100'))"></button>
             </template>
         </div>
     </div>
