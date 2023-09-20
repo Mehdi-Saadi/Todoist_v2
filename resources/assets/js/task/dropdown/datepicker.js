@@ -53,7 +53,7 @@ export function datepicker(taskID, deadlineDate = null) {
             return date.toDateString() === this.deadlineDate.toDateString();
         },
 
-        setDate(date) {
+        saveDate(date) {
             if (this.isPassedDay(date)) {return;}
 
             const deadlineField = document.getElementById(`task-deadline-${taskID}`);
@@ -123,7 +123,7 @@ export function datepicker(taskID, deadlineDate = null) {
             this.resetAndSendData(deadlineField, date, color, day, data);
         },
 
-        setDateShortcut(date) {
+        saveDateShortcut(date) {
             const deadlineField = document.getElementById(`task-deadline-${taskID}`),
                 today = new Date();
             let day,

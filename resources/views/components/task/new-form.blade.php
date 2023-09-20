@@ -21,9 +21,9 @@
             {{-- more actions dropdown --}}
             <x-dropdown.main>
                 {{-- toggle button --}}
-                <x-button.header-tool data-dropdown-toggle="more-actions" class="border p-1"><x-icon.ellipsis-horizontal class="w-6 h-6"/></x-button.header-tool>
+                <x-button.header-tool data-dropdown-toggle="new-task-form-more-actions" class="border p-1"><x-icon.ellipsis-horizontal class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-48" id="more-actions">
+                <x-dropdown.menu class="w-48" id="new-task-form-more-actions">
                     <x-dropdown.button type="button" class="font-normal"><x-icon.clock class="w-5 h-5 mr-1"/>Reminders</x-dropdown.button>
                     <x-dropdown.button type="button" class="font-normal"><x-icon.location class="w-4 h-4 mr-1"/>Location</x-dropdown.button>
                 </x-dropdown.menu>
