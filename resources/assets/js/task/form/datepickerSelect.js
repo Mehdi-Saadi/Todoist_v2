@@ -1,8 +1,8 @@
 import {ajaxRequest} from "../../helpers/ajaxRequest.js";
 import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
-import {setTitleForDeadlineField} from "./helpers/setTitleForDeadlineField.js";
-import {calendar_dot} from "./helpers/calendarDotSVG.js";
+import {setTitleForDeadlineField} from "../helpers/setTitleForDeadlineField.js";
+import {calendar_dot} from "../helpers/calendarDotSVG.js";
 
 export function datepickerSelect(taskID, deadlineDate = null) {
     return {
