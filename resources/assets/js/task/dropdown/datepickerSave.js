@@ -15,7 +15,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
         daysOfMonth: [],
         blankDays: [],
         deadlineDate: null,
-        showNoDate: false,
+        showNoDate: null,
 
         initDate() {
             this.currentMonth = this.today.getMonth();
@@ -27,9 +27,13 @@ export function datepickerSave(taskID, deadlineDate = null) {
                 // open calendar on deadline month
                 this.month = this.deadlineDate.getMonth();
                 this.year = this.deadlineDate.getFullYear();
+
+                this.showNoDate = true;
             } else {
                 this.month = this.currentMonth;
                 this.year = this.currentYear;
+
+                this.showNoDate = false;
             }
         },
 
@@ -173,7 +177,9 @@ export function datepickerSave(taskID, deadlineDate = null) {
                     color = 'text-purple-600';
                     break;
                 default:
-                    return;
+                    date = '';
+                    day = '';
+                    color = '';
             }
 
             this.resetAndSendData(deadlineField, date, color, day, data);
@@ -181,21 +187,36 @@ export function datepickerSave(taskID, deadlineDate = null) {
 
         resetAndSendData(deadlineField, date, color, day, data) {
             // reset deadline filed
-            setTitleForDeadlineField(deadlineField, date);
 
-            deadlineField.removeAttribute('class');
-            deadlineField.setAttribute('class', `flex items-center ${color}`);
-            deadlineField.innerHTML = `${calendar_dot_4 + day}`;
+            if (date !== '') {
+                setTitleForDeadlineField(deadlineField, date);
 
-            toastAlert('', `Due date updated to ${day}`);
+                deadlineField.removeAttribute('class');
+                deadlineField.setAttribute('class', `flex items-center ${color}`);
+                deadlineField.innerHTML = `${calendar_dot_4 + day}`;
+                data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-            data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+                // convert new deadlineDate string to Date object
+                this.deadlineDate = new Date(data.date);
+                // open calendar on deadline month
+                this.month = this.deadlineDate.getMonth();
+                this.year = this.deadlineDate.getFullYear();
 
-            // convert new deadlineDate string to Date object
-            this.deadlineDate = new Date(data.date);
-            // open calendar on deadline month
-            this.month = this.deadlineDate.getMonth();
-            this.year = this.deadlineDate.getFullYear();
+                toastAlert('', `Due date updated to ${day}`);
+                this.showNoDate = true;
+            } else {
+                deadlineField.innerHTML = ``;
+
+                data.date = null;
+
+                this.deadlineDate = null;
+                this.month = this.currentMonth;
+                this.year = this.currentYear;
+
+                toastAlert('', `Due date updated`);
+                this.showNoDate = false;
+            }
+
             // reset datepicker
             this.initDatepicker();
 

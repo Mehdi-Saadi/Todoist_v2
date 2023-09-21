@@ -3,10 +3,10 @@ import {calendar_dot_5} from "../helpers/calendarDotSVG.js";
 
 export function datepickerSelect() {
     return {
-        timestampOfTodayInSec: null,
-        today: null,
+        today: new Date(),
         currentMonth: null,
         currentYear: null,
+        timestampOfTodayInSec: null,
         month: null,
         year: null,
         daysOfMonth: [],
@@ -15,7 +15,6 @@ export function datepickerSelect() {
         showNoDate: false,
 
         initDate() {
-            this.today = new Date();
             this.currentMonth = this.today.getMonth();
             this.currentYear = this.today.getFullYear();
             this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, this.today.getDate()) / 1000;
