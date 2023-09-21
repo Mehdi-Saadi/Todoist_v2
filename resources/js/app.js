@@ -66,9 +66,11 @@ window.selectPriority = selectPriority;
 // task dropdown scripts
 import {setPriority} from "../assets/js/task/dropdown/setPriority";
 window.setPriority = setPriority;
-import {datepickerSave} from "../assets/js/task/dropdown/datepickerSave.js";
+import {datepickerSave} from "../assets/js/task/dropdown/datepickerSave";
 window.datepickerSave = datepickerSave;
-import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames.js";
+import {datepickerSelect} from "../assets/js/task/form/datepickerSelect";
+window.datepickerSelect = datepickerSelect;
+import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames";
 window.MONTH_NAMES = MONTH_NAMES;
 
 // must comment lines below for working livewire...

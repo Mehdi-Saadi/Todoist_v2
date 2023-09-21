@@ -1,11 +1,21 @@
  <form class="border border-gray-400 rounded-xl hidden" id="new-task-form">
     <div class="flex flex-col my-2 space-y-1">
         <input type="hidden" name="color" value="#808080" id="new-task-form-color">
+        <input type="hidden" name="deadline_date" value="" id="new-task-form-deadline-date">
         <input type="text" name="name" class="border-none focus:outline-none focus:ring-0 h-6 font-semibold placeholder:text-gray-400" placeholder="Task name" autocomplete="off">
         <input type="text" name="description" class="border-none focus:outline-none focus:ring-0 h-4 text-xs placeholder:text-gray-400" placeholder="Description" autocomplete="off">
         {{-- task actions --}}
         <div class="flex flex-row text-xs mx-3 space-x-2 pt-2 pb-1">
-            <x-button.header-tool class="border px-1"><x-icon.calendar.dot class="w-5 h-5 mr-1"/>Due date</x-button.header-tool>
+            {{-- due date dropdown --}}
+            <x-dropdown.main>
+                {{-- toggle button --}}
+                <x-button.header-tool data-dropdown-toggle="new-task-form-due-date" class="border px-1 h-full"><x-icon.calendar.dot class="w-5 h-5 mr-1"/>Due date</x-button.header-tool>
+                {{-- menu --}}
+                <x-dropdown.menu class="w-64" id="new-task-form-due-date">
+                    <x-task.sections.datepicker x-data="datepickerSelect()" x-init="[initDate(), initDatepicker()]"/>
+                </x-dropdown.menu>
+            </x-dropdown.main>
+            {{-- priority dropdown --}}
             <x-dropdown.main>
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="new-task-form-priority" class="border px-1 h-full"><x-icon.flag-outline class="w-5 h-5 mr-1"/>Priority</x-button.header-tool>

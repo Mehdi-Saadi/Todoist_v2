@@ -2,7 +2,7 @@ import {ajaxRequest} from "../../helpers/ajaxRequest.js";
 import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "../helpers/setTitleForDeadlineField.js";
-import {calendar_dot} from "../helpers/calendarDotSVG.js";
+import {calendar_dot_4} from "../helpers/calendarDotSVG.js";
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
@@ -45,9 +45,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
         },
 
         isSelected(date) {
-            if (! this.deadlineDate) {
-                return false;
-            }
+            if (! this.deadlineDate) {return false;}
             date = new Date(this.year, this.month, date);
 
             return date.toDateString() === this.deadlineDate.toDateString();
@@ -188,7 +186,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
 
             deadlineField.removeAttribute('class');
             deadlineField.setAttribute('class', `flex items-center ${color}`);
-            deadlineField.innerHTML = `${calendar_dot + day}`;
+            deadlineField.innerHTML = `${calendar_dot_4 + day}`;
 
             toastAlert('', `Due date updated to ${day}`);
 

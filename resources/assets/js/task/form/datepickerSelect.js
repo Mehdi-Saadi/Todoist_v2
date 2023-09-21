@@ -1,10 +1,7 @@
-import {ajaxRequest} from "../../helpers/ajaxRequest.js";
 import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
-import {toastAlert} from "../../helpers/alert.js";
-import {setTitleForDeadlineField} from "../helpers/setTitleForDeadlineField.js";
-import {calendar_dot} from "../helpers/calendarDotSVG.js";
+import {calendar_dot_5} from "../helpers/calendarDotSVG.js";
 
-export function datepickerSelect(taskID, deadlineDate = null) {
+export function datepickerSelect() {
     return {
         timestampOfTodayInSec: null,
         currentMonth: null,
@@ -14,22 +11,15 @@ export function datepickerSelect(taskID, deadlineDate = null) {
         daysOfMonth: [],
         blankDays: [],
         deadlineDate: null,
+        showNoDate: false,
 
         initDate() {
             const today = new Date();
             this.currentMonth = today.getMonth();
             this.currentYear = today.getFullYear();
             this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
-            if (deadlineDate) {
-                // convert deadlineDate string to Date object
-                this.deadlineDate = new Date(deadlineDate);
-                // open calendar on deadline month
-                this.month = this.deadlineDate.getMonth();
-                this.year = this.deadlineDate.getFullYear();
-            } else {
-                this.month = this.currentMonth;
-                this.year = this.currentYear;
-            }
+            this.month = this.currentMonth;
+            this.year = this.currentYear;
         },
 
         isToday(date) {
@@ -45,18 +35,17 @@ export function datepickerSelect(taskID, deadlineDate = null) {
         },
 
         isSelected(date) {
-            if (! this.deadlineDate) {
-                return false;
-            }
+            if (! this.deadlineDate) {return false;}
             date = new Date(this.year, this.month, date);
 
             return date.toDateString() === this.deadlineDate.toDateString();
         },
 
-        saveDate(date) {
+        chooseDate(date) {
             if (this.isPassedDay(date)) {return;}
 
-            const deadlineField = document.getElementById(`task-deadline-${taskID}`);
+            const dueDateBtn = document.querySelector('button[data-dropdown-toggle="new-task-form-due-date"]');
+            const deadlineInput = document.getElementById('new-task-form-deadline-date');
             let today = this.timestampOfTodayInSec,
                 tomorrow = today + 86400,
                 thirdDay = tomorrow + 86400,
@@ -66,10 +55,7 @@ export function datepickerSelect(taskID, deadlineDate = null) {
                 seventhDay = sixthDay + 86400,
                 eighthDay = seventhDay + 86400,
                 day,
-                color,
-                data = {
-                    id: taskID
-                };
+                color;
 
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
@@ -118,19 +104,18 @@ export function datepickerSelect(taskID, deadlineDate = null) {
                 default:
                     date = new Date(date * 1000);
                     day = `${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`;
+                    color = '';
             }
 
-            this.resetAndSendData(deadlineField, date, color, day, data);
+            this.resetAndSetData(deadlineInput, dueDateBtn, date, color, day);
         },
 
-        saveDateShortcut(date) {
-            const deadlineField = document.getElementById(`task-deadline-${taskID}`),
+        chooseDateShortcut(date) {
+            const dueDateBtn = document.querySelector('button[data-dropdown-toggle="new-task-form-due-date"]');
+            const deadlineInput = document.getElementById('new-task-form-deadline-date'),
                 today = new Date();
             let day,
-                color,
-                data = {
-                    id: taskID,
-                };
+                color;
 
             switch (date) {
                 case 'today':
@@ -176,33 +161,39 @@ export function datepickerSelect(taskID, deadlineDate = null) {
                     color = 'text-purple-600';
                     break;
                 default:
-                    return;
+                    date = '';
+                    day = 'Due date';
+                    color = '';
             }
 
-            this.resetAndSendData(deadlineField, date, color, day, data);
+            this.resetAndSetData(deadlineInput, dueDateBtn, date, color, day);
         },
 
-        resetAndSendData(deadlineField, date, color, day, data) {
-            // reset deadline filed
-            setTitleForDeadlineField(deadlineField, date);
+        resetAndSetData(deadlineInput, dueDateBtn, date, color, day) {
+            // reset deadline input
+            dueDateBtn.removeAttribute('class');
+            dueDateBtn.setAttribute('class', `hover:bg-zinc-100 rounded transition duration-300 flex items-center border px-1 h-full ${color}`);
+            dueDateBtn.innerHTML = `${calendar_dot_5 + day}`;
 
-            deadlineField.removeAttribute('class');
-            deadlineField.setAttribute('class', `flex items-center ${color}`);
-            deadlineField.innerHTML = `${calendar_dot + day}`;
+            if (date !== '') {
+                date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+                // convert new deadlineDate string to Date object
+                this.deadlineDate = new Date(date);
+                // open calendar on deadline month
+                this.month = this.deadlineDate.getMonth();
+                this.year = this.deadlineDate.getFullYear();
+                this.showNoDate = true;
+            } else {
+                this.deadlineDate = null;
+                this.month = this.currentMonth;
+                this.year = this.currentYear;
+                this.showNoDate = false;
+            }
 
-            toastAlert('', `Due date updated to ${day}`);
+            deadlineInput.value = date;
 
-            data.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-
-            // convert new deadlineDate string to Date object
-            this.deadlineDate = new Date(data.date);
-            // open calendar on deadline month
-            this.month = this.deadlineDate.getMonth();
-            this.year = this.deadlineDate.getFullYear();
             // reset datepicker
             this.initDatepicker();
-
-            ajaxRequest('put', '/task/update/date', data, function () {});
         },
 
         initDatepicker() {
