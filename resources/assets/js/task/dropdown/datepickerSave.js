@@ -3,6 +3,7 @@ import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "../helpers/setTitleForDeadlineField.js";
 import {calendar_dot_4} from "../helpers/calendarDotSVG.js";
+import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
@@ -245,25 +246,8 @@ export function datepickerSave(taskID, deadlineDate = null) {
             this.daysOfMonth = daysOfMonthArray;
         },
 
-        previousMonth() {
-            if (this.month === this.currentMonth && this.year === this.currentYear) {return;}
-            if (this.month  === 0) {
-                this.year--;
-                this.month = 11;
-            } else {
-                this.month--;
-            }
-            this.initDatepicker();
-        },
+        previousMonth,
 
-        nextMonth() {
-            if (this.month === 11) {
-                this.year++;
-                this.month = 0;
-            } else {
-                this.month++;
-            }
-            this.initDatepicker();
-        }
+        nextMonth
     }
 }
