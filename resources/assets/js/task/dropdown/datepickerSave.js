@@ -6,20 +6,21 @@ import {calendar_dot_4} from "../helpers/calendarDotSVG.js";
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
-        timestampOfTodayInSec: null,
+        today: new Date(),
         currentMonth: null,
         currentYear: null,
+        timestampOfTodayInSec: null,
         month: null,
         year: null,
         daysOfMonth: [],
         blankDays: [],
         deadlineDate: null,
+        showNoDate: false,
 
         initDate() {
-            const today = new Date();
-            this.currentMonth = today.getMonth();
-            this.currentYear = today.getFullYear();
-            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
+            this.currentMonth = this.today.getMonth();
+            this.currentYear = this.today.getFullYear();
+            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, this.today.getDate()) / 1000;
             if (deadlineDate) {
                 // convert deadlineDate string to Date object
                 this.deadlineDate = new Date(deadlineDate);
@@ -33,10 +34,9 @@ export function datepickerSave(taskID, deadlineDate = null) {
         },
 
         isToday(date) {
-            const today = new Date();
             date = new Date(this.year, this.month, date);
 
-            return today.toDateString() === date.toDateString();
+            return this.today.toDateString() === date.toDateString();
         },
 
         isPassedDay(date) {
@@ -122,8 +122,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
         },
 
         chooseDateShortcut(date) {
-            const deadlineField = document.getElementById(`task-deadline-${taskID}`),
-                today = new Date();
+            const deadlineField = document.getElementById(`task-deadline-${taskID}`);
             let day,
                 color,
                 data = {
@@ -134,17 +133,17 @@ export function datepickerSave(taskID, deadlineDate = null) {
                 case 'today':
                     day = 'Today';
                     color = 'text-green-700';
-                    date = today;
+                    date = this.today;
                     break;
                 case 'tomorrow':
-                    date = new Date();
-                    date.setDate(today.getDate() + 1);
+                    date = this.today;
+                    date.setDate(this.today.getDate() + 1);
 
                     day = 'Tomorrow';
                     color = 'text-yellow-600';
                     break;
                 case 'this_weekend':
-                    date = new Date();
+                    date = this.today;
 
                     while (true) {
                         if(DAY_NAMES[date.getDay()] === 'Sat') {
@@ -157,7 +156,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
                     color = 'text-purple-600';
                     break;
                 case 'next_week':
-                    date = new Date();
+                    date = this.today;
 
                     if(DAY_NAMES[date.getDay()] === 'Mon') {
                         date.setDate(date.getDate() + 1);
