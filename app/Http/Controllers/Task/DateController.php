@@ -26,7 +26,7 @@ class DateController extends Controller
 
         $task = $user->tasks()->find($data['id']);
 
-        // check if user whants to remove deadline or add it
+        // check if user wants to remove deadline or add it
         if ($request['date'] === null) {
             $data['date'] = null;
             $data['time'] = null;
