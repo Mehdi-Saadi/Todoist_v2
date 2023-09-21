@@ -11,13 +11,6 @@ class TaskController extends Controller
 {
     public function create(Request $request): JsonResponse
     {
-        // ajax request required
-        if(! $request->ajax()) {
-            return response()->json([
-                'status' => 'ajax required',
-            ]);
-        }
-
         $user = auth()->user();
 
         $data = $request->validate([
@@ -55,13 +48,6 @@ class TaskController extends Controller
 
     public function destroy(Request $request): JsonResponse|string
     {
-        // ajax request required
-        if(! $request->ajax()) {
-            return response()->json([
-                'status' => 'ajax required',
-            ]);
-        }
-
         $this->destroyTasks(auth()->user(), $request);
 
         return 'sync';

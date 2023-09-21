@@ -11,13 +11,6 @@ class ColorController extends Controller
 {
     public function updateColor(Request $request): JsonResponse|string
     {
-        // ajax request required
-        if(! $request->ajax()) {
-            return response()->json([
-                'status' => 'ajax required',
-            ]);
-        }
-
         $user = auth()->user();
 
         $data = $request->validate([

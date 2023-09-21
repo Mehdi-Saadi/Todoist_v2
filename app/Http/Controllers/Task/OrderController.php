@@ -15,13 +15,6 @@ class OrderController extends Controller
      */
     public function updateAll(Request $request): JsonResponse|string
     {
-        // ajax request required
-        if(! $request->ajax()) {
-            return response()->json([
-                'status' => 'ajax required',
-            ]);
-        }
-
         $this->setOrder(auth()->user(), $request);
 
         return 'sync';

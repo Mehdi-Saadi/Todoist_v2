@@ -28,7 +28,7 @@ Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/today', Today::class)->name('today');
 });
 
-Route::prefix('/task')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
     Route::post('/create', [TaskController::class, 'create']);
     Route::delete('/destroy', [TaskController::class, 'destroy']);
 
@@ -38,7 +38,7 @@ Route::prefix('/task')->middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::put('/tasks/update', [OrderController::class, 'updateAll']);
+Route::put('/tasks/update', [OrderController::class, 'updateAll'])->middleware(['auth', 'verified', 'ajax.request']);
 
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
 
