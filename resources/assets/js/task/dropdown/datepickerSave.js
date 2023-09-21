@@ -5,6 +5,7 @@ import {setTitleForDeadlineField} from "../helpers/datepicker/setTitleForDeadlin
 import {calendar_dot_4} from "../helpers/datepicker/calendarDotSVG.js";
 import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
+import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
@@ -39,23 +40,11 @@ export function datepickerSave(taskID, deadlineDate = null) {
             }
         },
 
-        isToday(date) {
-            date = new Date(this.year, this.month, date);
+        isToday,
 
-            return this.today.toDateString() === date.toDateString();
-        },
+        isPassedDay,
 
-        isPassedDay(date) {
-            const timestampOfDate = new Date(this.year, this.month, date) / 1000;
-            return timestampOfDate < this.timestampOfTodayInSec;
-        },
-
-        isSelected(date) {
-            if (! this.deadlineDate) {return false;}
-            date = new Date(this.year, this.month, date);
-
-            return date.toDateString() === this.deadlineDate.toDateString();
-        },
+        isSelected,
 
         chooseDate(date) {
             if (this.isPassedDay(date)) {return;}

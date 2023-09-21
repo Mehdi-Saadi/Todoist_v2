@@ -2,6 +2,7 @@ import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {calendar_dot_5} from "../helpers/datepicker/calendarDotSVG.js";
 import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
+import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
 
 export function datepickerSelect() {
     return {
@@ -24,23 +25,11 @@ export function datepickerSelect() {
             this.year = this.currentYear;
         },
 
-        isToday(date) {
-            date = new Date(this.year, this.month, date);
+        isToday,
 
-            return this.today.toDateString() === date.toDateString();
-        },
+        isPassedDay,
 
-        isPassedDay(date) {
-            const timestampOfDate = new Date(this.year, this.month, date) / 1000;
-            return timestampOfDate < this.timestampOfTodayInSec;
-        },
-
-        isSelected(date) {
-            if (! this.deadlineDate) {return false;}
-            date = new Date(this.year, this.month, date);
-
-            return date.toDateString() === this.deadlineDate.toDateString();
-        },
+        isSelected,
 
         chooseDate(date) {
             if (this.isPassedDay(date)) {return;}
