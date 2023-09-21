@@ -1,5 +1,5 @@
 import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
-import {calendar_dot_5} from "../helpers/calendarDotSVG.js";
+import {calendar_dot_5} from "../helpers/datepicker/calendarDotSVG.js";
 import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
 
