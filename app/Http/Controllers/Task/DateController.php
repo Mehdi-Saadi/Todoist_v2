@@ -22,15 +22,26 @@ class DateController extends Controller
 
         $data = $request->validate([
             'id' => [Rule::exists('tasks', 'id')->where('user_id', $user->id)],
-            'date' => ['string', 'date'],
         ]);
 
         $task = $user->tasks()->find($data['id']);
 
-        if ($task->deadline_time === null) {
-            $data['time'] = '23:59';
+        // check if user whants to remove deadline or add it
+        if ($request['date'] === null) {
+            $data['date'] = null;
+            $data['time'] = null;
         } else {
-            $data['time'] = $task->deadline_time;
+            $request->validate([
+                'date' => ['string', 'date'],
+            ]);
+
+            $data['date'] = $request['date'];
+
+            if ($task->deadline_time === null) {
+                $data['time'] = '23:59';
+            } else {
+                $data['time'] = $task->deadline_time;
+            }
         }
 
         $task->update([
