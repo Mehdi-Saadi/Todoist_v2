@@ -4,6 +4,7 @@ import {calendar_dot_5} from "../helpers/calendarDotSVG.js";
 export function datepickerSelect() {
     return {
         timestampOfTodayInSec: null,
+        today: null,
         currentMonth: null,
         currentYear: null,
         month: null,
@@ -14,19 +15,18 @@ export function datepickerSelect() {
         showNoDate: false,
 
         initDate() {
-            const today = new Date();
-            this.currentMonth = today.getMonth();
-            this.currentYear = today.getFullYear();
-            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
+            this.today = new Date();
+            this.currentMonth = this.today.getMonth();
+            this.currentYear = this.today.getFullYear();
+            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, this.today.getDate()) / 1000;
             this.month = this.currentMonth;
             this.year = this.currentYear;
         },
 
         isToday(date) {
-            const today = new Date();
             date = new Date(this.year, this.month, date);
 
-            return today.toDateString() === date.toDateString();
+            return this.today.toDateString() === date.toDateString();
         },
 
         isPassedDay(date) {
@@ -112,8 +112,7 @@ export function datepickerSelect() {
 
         chooseDateShortcut(date) {
             const dueDateBtn = document.querySelector('button[data-dropdown-toggle="new-task-form-due-date"]');
-            const deadlineInput = document.getElementById('new-task-form-deadline-date'),
-                today = new Date();
+            const deadlineInput = document.getElementById('new-task-form-deadline-date');
             let day,
                 color;
 
@@ -121,17 +120,17 @@ export function datepickerSelect() {
                 case 'today':
                     day = 'Today';
                     color = 'text-green-700';
-                    date = today;
+                    date = this.today;
                     break;
                 case 'tomorrow':
-                    date = new Date();
-                    date.setDate(today.getDate() + 1);
+                    date = this.today;
+                    date.setDate(this.today.getDate() + 1);
 
                     day = 'Tomorrow';
                     color = 'text-yellow-600';
                     break;
                 case 'this_weekend':
-                    date = new Date();
+                    date = this.today;
 
                     while (true) {
                         if(DAY_NAMES[date.getDay()] === 'Sat') {
@@ -144,7 +143,7 @@ export function datepickerSelect() {
                     color = 'text-purple-600';
                     break;
                 case 'next_week':
-                    date = new Date();
+                    date = this.today;
 
                     if(DAY_NAMES[date.getDay()] === 'Mon') {
                         date.setDate(date.getDate() + 1);
