@@ -6,7 +6,6 @@ import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayCon
 
 export function datepickerSelect() {
     return {
-        today: new Date(),
         currentMonth: null,
         currentYear: null,
         timestampOfTodayInSec: null,
@@ -18,9 +17,10 @@ export function datepickerSelect() {
         showNoDate: false,
 
         initDate() {
-            this.currentMonth = this.today.getMonth();
-            this.currentYear = this.today.getFullYear();
-            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, this.today.getDate()) / 1000;
+            const today = new Date();
+            this.currentMonth = today.getMonth();
+            this.currentYear = today.getFullYear();
+            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
             this.month = this.currentMonth;
             this.year = this.currentYear;
         },
@@ -110,17 +110,17 @@ export function datepickerSelect() {
                 case 'today':
                     day = 'Today';
                     color = 'text-green-700';
-                    date = this.today;
+                    date = new Date();
                     break;
                 case 'tomorrow':
-                    date = this.today;
-                    date.setDate(this.today.getDate() + 1);
+                    date = new Date();
+                    date.setDate(date.getDate() + 1);
 
                     day = 'Tomorrow';
                     color = 'text-yellow-600';
                     break;
                 case 'this_weekend':
-                    date = this.today;
+                    date = new Date();
 
                     while (true) {
                         if(DAY_NAMES[date.getDay()] === 'Sat') {
@@ -133,7 +133,7 @@ export function datepickerSelect() {
                     color = 'text-purple-600';
                     break;
                 case 'next_week':
-                    date = this.today;
+                    date = new Date();
 
                     if(DAY_NAMES[date.getDay()] === 'Mon') {
                         date.setDate(date.getDate() + 1);
@@ -172,17 +172,25 @@ export function datepickerSelect() {
                 this.month = this.deadlineDate.getMonth();
                 this.year = this.deadlineDate.getFullYear();
                 this.showNoDate = true;
+
+                document.addEventListener('reset.due.date', this.resetDueDate);
             } else {
                 this.deadlineDate = null;
                 this.month = this.currentMonth;
                 this.year = this.currentYear;
                 this.showNoDate = false;
+
+                document.removeEventListener('reset.due.date', this.resetDueDate);
             }
 
             deadlineInput.value = date;
 
             // reset datepicker
             this.initDatepicker();
+        },
+
+        resetDueDate() {
+            this.chooseDateShortcut('no_date');
         },
 
         initDatepicker,
