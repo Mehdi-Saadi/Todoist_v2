@@ -9,7 +9,6 @@ import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayCon
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
-        today: new Date(),
         currentMonth: null,
         currentYear: null,
         timestampOfTodayInSec: null,
@@ -21,9 +20,10 @@ export function datepickerSave(taskID, deadlineDate = null) {
         showNoDate: null,
 
         initDate() {
-            this.currentMonth = this.today.getMonth();
-            this.currentYear = this.today.getFullYear();
-            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, this.today.getDate()) / 1000;
+            const today = new Date();
+            this.currentMonth = today.getMonth();
+            this.currentYear = today.getFullYear();
+            this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
             if (deadlineDate) {
                 // convert deadlineDate string to Date object
                 this.deadlineDate = new Date(deadlineDate);
@@ -128,17 +128,17 @@ export function datepickerSave(taskID, deadlineDate = null) {
                 case 'today':
                     day = 'Today';
                     color = 'text-green-700';
-                    date = this.today;
+                    date = new Date();
                     break;
                 case 'tomorrow':
-                    date = this.today;
-                    date.setDate(this.today.getDate() + 1);
+                    date = new Date();
+                    date.setDate(date.getDate() + 1);
 
                     day = 'Tomorrow';
                     color = 'text-yellow-600';
                     break;
                 case 'this_weekend':
-                    date = this.today;
+                    date = new Date();
 
                     while (true) {
                         if(DAY_NAMES[date.getDay()] === 'Sat') {
@@ -151,7 +151,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
                     color = 'text-purple-600';
                     break;
                 case 'next_week':
-                    date = this.today;
+                    date = new Date();
 
                     if(DAY_NAMES[date.getDay()] === 'Mon') {
                         date.setDate(date.getDate() + 1);

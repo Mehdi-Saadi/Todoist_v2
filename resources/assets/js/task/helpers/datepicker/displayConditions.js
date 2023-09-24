@@ -1,7 +1,8 @@
 export function isToday(date) {
+    const today = new Date();
     date = new Date(this.year, this.month, date);
 
-    return this.today.toDateString() === date.toDateString();
+    return today.toDateString() === date.toDateString();
 }
 
 export function isPassedDay(date) {
