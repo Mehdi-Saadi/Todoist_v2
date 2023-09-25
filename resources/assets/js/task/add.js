@@ -44,7 +44,7 @@ function showSavedTask(parentRootId, task) {
 
                         <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-64" id="task-due-date-${task.id}">
                             <div class="p-1">
-                                <div x-data="datepicker(${task.id})" x-init="[initDate(), initDatepicker()]">
+                                <div x-data="datepickerSave(${task.id}, '${task.deadline_date}')" x-init="[initDate(), initDatepicker()]">
                                     <div class="text-xs">
                                         <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" @click="setDateShortcut('today')">
                                             <span class="flex items-center font-bold"><svg class="w-6 h-6 mr-2 text-green-700" viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><path fill-rule="nonzero" d="M6 4.5h12A1.5 1.5 0 0 1 19.5 6v2.5h-15V6A1.5 1.5 0 0 1 6 4.5z" opacity=".1"></path><path fill-rule="nonzero" d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6zm1 3h10a.5.5 0 1 1 0 1H7a.5.5 0 0 1 0-1z"></path><text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)" font-weight="500"><tspan x="8" y="15" text-anchor="middle">18</tspan></text></g></svg>Today</span>
@@ -151,6 +151,7 @@ function addTask(taskFormId) {
         let target = e.target;
         const submitBtn = target.querySelector('button[data-id="submit-btn"]');
         const colorInput = target.querySelector('input[name="color"]');
+        const deadlineDateInput = target.querySelector('input[name="deadline_date"]');
         const nameInput = target.querySelector('input[name="name"]');
         const descriptionInput = target.querySelector('input[name="description"]');
         // check that inputs must not empty
@@ -160,6 +161,7 @@ function addTask(taskFormId) {
 
         let data = {
             color: colorInput.value,
+            deadline_date: deadlineDateInput.value,
             name: nameInput.value,
             description: descriptionInput.value,
         };
@@ -190,6 +192,7 @@ function addTask(taskFormId) {
 
         // set inputs to default value
         selectPriority(4);
+        document.dispatchEvent(new CustomEvent('reset.due.date'));
         nameInput.value = '';
         descriptionInput.value = '';
 

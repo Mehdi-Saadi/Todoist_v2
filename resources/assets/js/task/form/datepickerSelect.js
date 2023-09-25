@@ -23,6 +23,11 @@ export function datepickerSelect() {
             this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
             this.month = this.currentMonth;
             this.year = this.currentYear;
+
+            // event listener for reseting the datepicker after sending the new task
+            document.addEventListener('reset.due.date', () => {
+                this.chooseDateShortcut('no_date');
+            });
         },
 
         isToday,
@@ -172,25 +177,17 @@ export function datepickerSelect() {
                 this.month = this.deadlineDate.getMonth();
                 this.year = this.deadlineDate.getFullYear();
                 this.showNoDate = true;
-
-                document.addEventListener('reset.due.date', this.resetDueDate);
             } else {
                 this.deadlineDate = null;
                 this.month = this.currentMonth;
                 this.year = this.currentYear;
                 this.showNoDate = false;
-
-                document.removeEventListener('reset.due.date', this.resetDueDate);
             }
 
             deadlineInput.value = date;
 
             // reset datepicker
             this.initDatepicker();
-        },
-
-        resetDueDate() {
-            this.chooseDateShortcut('no_date');
         },
 
         initDatepicker,

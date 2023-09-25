@@ -21,6 +21,14 @@ class TaskController extends Controller
             'description' => ['max:255'],
         ]);
 
+        if ($request['deadline_date'] !== null) {
+            $request->validate([
+                'deadline_date' => ['string', 'date'],
+            ]);
+            $data['deadline_date'] = $request['deadline_date'];
+            $data['deadline_time'] = '23:59';
+        }
+
         $data['archive_id'] = 2;
 
 //        if($request['parent_id'] != 0) {
@@ -121,12 +129,6 @@ class TaskController extends Controller
         });
     }
 
-    /**
-     * delete all given tasks
-     * @param $user
-     * @param $submittedIDs
-     * @return void
-     */
     protected function destroyTasks($user, $submittedIDs): void
     {
         $submittedIDs = collect($submittedIDs);
