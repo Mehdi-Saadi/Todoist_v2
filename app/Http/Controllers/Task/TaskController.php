@@ -42,7 +42,8 @@ class TaskController extends Controller
 //        }
 
         // add the submited task at end of list for first time
-        $data['order'] = $user->tasks()->where('parent_id', $request['parent_id'])->max('order');
+//        $data['order'] = $user->tasks()->where('parent_id', $request['parent_id'])->max('order');
+        $data['order'] = $user->tasks()->where('parent_id', 0)->max('order');
         ++$data['order'];
 
         $task = $user->tasks()->create($data);

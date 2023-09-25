@@ -15,6 +15,7 @@ export function hideForm(buttonId, formId) {
     document.getElementById(buttonId).classList.remove('hidden');
     document.querySelector('input[name="name"]').value = '';
     document.querySelector('input[name="description"]').value = '';
+    document.dispatchEvent(new CustomEvent('reset.due.date'));
     selectPriority(4);
     submitBtn.setAttribute('disabled', 'true');
     submitBtn.setAttribute('type', 'button');
