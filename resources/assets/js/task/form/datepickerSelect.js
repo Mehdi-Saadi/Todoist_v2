@@ -46,7 +46,7 @@ export function datepickerSelect() {
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
-            let response = controlDate(this.timestampOfTodayInSec, date);
+            let response = controlDate(date);
 
             this.resetAndSetData(deadlineInput, dueDateBtn, response.date, response.color, response.day);
         },

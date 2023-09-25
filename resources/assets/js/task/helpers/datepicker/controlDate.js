@@ -1,14 +1,16 @@
 import {FULL_DAY_NAMES} from "../../../helpers/dayAndMonthNames.js";
+const dateOfToday = new Date();
+const today = new Date(dateOfToday.getFullYear(), dateOfToday.getMonth(), dateOfToday.getDate()) / 1000,
+    tomorrow = today + 86400,
+    thirdDay = tomorrow + 86400,
+    fourthDay = thirdDay + 86400,
+    fifthDay = fourthDay + 86400,
+    sixthDay = fifthDay + 86400,
+    seventhDay = sixthDay + 86400,
+    eighthDay = seventhDay + 86400;
 
-export function controlDate(today, date) {
-    let tomorrow = today + 86400,
-        thirdDay = tomorrow + 86400,
-        fourthDay = thirdDay + 86400,
-        fifthDay = fourthDay + 86400,
-        sixthDay = fifthDay + 86400,
-        seventhDay = sixthDay + 86400,
-        eighthDay = seventhDay + 86400,
-        day, color;
+export function controlDate(date) {
+    let day, color;
 
     switch (date) {
         case today:

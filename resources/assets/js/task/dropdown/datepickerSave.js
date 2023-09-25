@@ -58,7 +58,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
-            let response = controlDate(this.timestampOfTodayInSec, date);
+            let response = controlDate(date);
 
             this.resetAndSendData(deadlineField, response.date, response.color, response.day, data);
         },
