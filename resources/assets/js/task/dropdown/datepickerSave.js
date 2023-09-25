@@ -6,6 +6,7 @@ import {calendar_dot_4} from "../helpers/datepicker/calendarDotSVG.js";
 import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
 import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
+import {controlDate} from "../helpers/datepicker/controlDate.js";
 
 export function datepickerSave(taskID, deadlineDate = null) {
     return {
@@ -50,15 +51,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
             if (this.isPassedDay(date)) {return;}
 
             const deadlineField = document.getElementById(`task-deadline-${taskID}`);
-            let today = this.timestampOfTodayInSec,
-                tomorrow = today + 86400,
-                thirdDay = tomorrow + 86400,
-                fourthDay = thirdDay + 86400,
-                fifthDay = fourthDay + 86400,
-                sixthDay = fifthDay + 86400,
-                seventhDay = sixthDay + 86400,
-                eighthDay = seventhDay + 86400,
-                day,
+            let day,
                 color,
                 data = {
                     id: taskID
@@ -67,53 +60,9 @@ export function datepickerSave(taskID, deadlineDate = null) {
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
-            switch (date) {
-                case today:
-                    date = new Date(today * 1000);
-                    day = 'Today';
-                    color = 'text-green-700';
-                    break;
-                case tomorrow:
-                    date = new Date(tomorrow * 1000);
-                    day = 'Tomorrow';
-                    color = 'text-yellow-600';
-                    break;
-                case thirdDay:
-                    date = new Date(thirdDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                case fourthDay:
-                    date = new Date(fourthDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                case fifthDay:
-                    date = new Date(fifthDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                case sixthDay:
-                    date = new Date(sixthDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                case seventhDay:
-                    date = new Date(seventhDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                case eighthDay:
-                    date = new Date(eighthDay * 1000);
-                    day = FULL_DAY_NAMES[date.getDay()];
-                    color = 'text-purple-600';
-                    break;
-                default:
-                    date = new Date(date * 1000);
-                    day = `${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`;
-            }
+            let response = controlDate(this.timestampOfTodayInSec, date, color, day);
 
-            this.resetAndSendData(deadlineField, date, color, day, data);
+            this.resetAndSendData(deadlineField, response.date, response.color, response.day, data);
         },
 
         chooseDateShortcut(date) {
