@@ -1,10 +1,9 @@
-import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
+import {DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {calendar_dot_5} from "../helpers/datepicker/calendarDotSVG.js";
 import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
 import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
 import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
 import {controlDate} from "../helpers/datepicker/controlDate.js";
-// import {controlDate} from "../helpers/datepicker/controlDate.js";
 
 export function datepickerSelect() {
     return {

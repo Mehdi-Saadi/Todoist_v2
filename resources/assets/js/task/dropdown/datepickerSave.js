@@ -1,5 +1,5 @@
 import {ajaxRequest} from "../../helpers/ajaxRequest.js";
-import {DAY_NAMES, FULL_DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
+import {DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
 import {toastAlert} from "../../helpers/alert.js";
 import {setTitleForDeadlineField} from "../helpers/datepicker/setTitleForDeadlineField.js";
 import {calendar_dot_4} from "../helpers/datepicker/calendarDotSVG.js";
