@@ -51,16 +51,14 @@ export function datepickerSave(taskID, deadlineDate = null) {
             if (this.isPassedDay(date)) {return;}
 
             const deadlineField = document.getElementById(`task-deadline-${taskID}`);
-            let day,
-                color,
-                data = {
+            let data = {
                     id: taskID
                 };
 
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
-            let response = controlDate(this.timestampOfTodayInSec, date, color, day);
+            let response = controlDate(this.timestampOfTodayInSec, date);
 
             this.resetAndSendData(deadlineField, response.date, response.color, response.day, data);
         },

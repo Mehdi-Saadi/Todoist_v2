@@ -1,13 +1,14 @@
 import {FULL_DAY_NAMES} from "../../../helpers/dayAndMonthNames.js";
 
-export function controlDate(today, date, color, day) {
+export function controlDate(today, date) {
     let tomorrow = today + 86400,
         thirdDay = tomorrow + 86400,
         fourthDay = thirdDay + 86400,
         fifthDay = fourthDay + 86400,
         sixthDay = fifthDay + 86400,
         seventhDay = sixthDay + 86400,
-        eighthDay = seventhDay + 86400;
+        eighthDay = seventhDay + 86400,
+        day, color;
 
     switch (date) {
         case today:

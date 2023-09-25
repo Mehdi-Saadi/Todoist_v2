@@ -42,13 +42,11 @@ export function datepickerSelect() {
 
             const dueDateBtn = document.querySelector('button[data-dropdown-toggle="new-task-form-due-date"]');
             const deadlineInput = document.getElementById('new-task-form-deadline-date');
-            let day,
-                color;
 
             // convert selected date to timestamp
             date = new Date(this.year, this.month, date) / 1000;
 
-            let response = controlDate(this.timestampOfTodayInSec, date, color, day);
+            let response = controlDate(this.timestampOfTodayInSec, date);
 
             this.resetAndSetData(deadlineInput, dueDateBtn, response.date, response.color, response.day);
         },
