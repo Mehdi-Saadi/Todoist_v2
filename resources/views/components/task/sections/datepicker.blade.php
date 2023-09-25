@@ -16,7 +16,7 @@
             <span class="flex items-center font-bold"><x-icon.calendar.arrow class="w-5 h-5 mr-2 text-purple-600"/>Next Week</span>
             <span class="my-auto">{{ getNextMondayDate('D d M') }}</span>
         </x-dropdown.button>
-        <x-dropdown.button type="button" @click="chooseDateShortcut('no_date')" class="flex items-center font-bold" x-show="showNoDate">
+        <x-dropdown.button type="button" @click="chooseDateShortcut('no_date')" class="items-center font-bold" x-show="showNoDate">
             <x-icon.circle-slash class="w-5 h-5 mr-2 text-gray-800"/>No Date
         </x-dropdown.button>
     </div>

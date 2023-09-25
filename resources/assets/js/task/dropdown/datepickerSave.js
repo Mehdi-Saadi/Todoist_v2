@@ -8,7 +8,7 @@ import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
 import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
 import {controlDate} from "../helpers/datepicker/controlDate.js";
 
-export function datepickerSave(taskID, deadlineDate = null) {
+export function datepickerSave(taskID, deadlineDate = '') {
     return {
         currentMonth: null,
         currentYear: null,
@@ -25,7 +25,7 @@ export function datepickerSave(taskID, deadlineDate = null) {
             this.currentMonth = today.getMonth();
             this.currentYear = today.getFullYear();
             this.timestampOfTodayInSec = new Date(this.currentYear, this.currentMonth, today.getDate()) / 1000;
-            if (deadlineDate) {
+            if (deadlineDate !== '') {
                 // convert deadlineDate string to Date object
                 this.deadlineDate = new Date(deadlineDate);
                 // open calendar on deadline month
