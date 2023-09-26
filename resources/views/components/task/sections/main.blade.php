@@ -15,7 +15,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="task-due-date-{{ $task->id }}" title="Set due date" class="p-1"><x-icon.calendar.dot class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-64" id="task-due-date-{{ $task->id }}">
+                <x-dropdown.menu class="w-64 xl:left-1/2 xl:-translate-x-1/2 right-0" id="task-due-date-{{ $task->id }}">
                     <x-task.sections.datepicker x-data="datepickerSave({{ $task->id }}, '{{ $task->deadline_date }}')" x-init="[initDate(), initDatepicker()]"/>
                 </x-dropdown.menu>
             </x-dropdown.main>
@@ -26,7 +26,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="task-more-tools-{{ $task->id }}" title="More task actions" class="p-1"><x-icon.ellipsis-horizontal class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-60" id="task-more-tools-{{ $task->id }}">
+                <x-dropdown.menu class="w-60 2xl:left-1/2 2xl:-translate-x-1/2 right-0" id="task-more-tools-{{ $task->id }}">
                     <x-dropdown.button type="button"><x-icon.pencil class="w-5 h-5 mr-2"/>Edit task</x-dropdown.button>
                     <hr class="my-1">
                     <div class="flex flex-col mx-2">

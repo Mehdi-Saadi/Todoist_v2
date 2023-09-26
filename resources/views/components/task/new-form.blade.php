@@ -11,7 +11,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="new-task-form-due-date" class="border px-1 h-full"><x-icon.calendar.dot class="w-5 h-5 mr-1"/>Due date</x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-64" id="new-task-form-due-date">
+                <x-dropdown.menu class="w-64 lg:left-1/2 lg:-translate-x-1/2" id="new-task-form-due-date">
                     <x-task.sections.datepicker x-data="datepickerSelect()" x-init="[initDate(), initDatepicker()]"/>
                 </x-dropdown.menu>
             </x-dropdown.main>
@@ -20,7 +20,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="new-task-form-priority" class="border px-1 h-full"><x-icon.flag-outline class="w-5 h-5 mr-1"/>Priority</x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-32" id="new-task-form-priority">
+                <x-dropdown.menu class="w-32 left-1/2 -translate-x-1/2" id="new-task-form-priority">
                     <x-dropdown.button type="button" onclick="selectPriority(1)" class="font-normal"><x-icon.flag-solid class="w-5 h-5 mr-1" style="color: #db4035"/>Priority 1</x-dropdown.button>
                     <x-dropdown.button type="button" onclick="selectPriority(2)" class="font-normal"><x-icon.flag-solid class="w-5 h-5 mr-1" style="color: #ff9933"/>Priority 2</x-dropdown.button>
                     <x-dropdown.button type="button" onclick="selectPriority(3)" class="font-normal"><x-icon.flag-solid class="w-5 h-5 mr-1" style="color: #4073ff"/>Priority 3</x-dropdown.button>
@@ -33,7 +33,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="new-task-form-more-actions" class="border p-1"><x-icon.ellipsis-horizontal class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-48" id="new-task-form-more-actions">
+                <x-dropdown.menu class="w-48 sm:left-1/2 sm:-translate-x-1/2 right-0" id="new-task-form-more-actions">
                     <x-dropdown.button type="button" class="font-normal"><x-icon.clock class="w-5 h-5 mr-1"/>Reminders</x-dropdown.button>
                     <x-dropdown.button type="button" class="font-normal"><x-icon.location class="w-4 h-4 mr-1"/>Location</x-dropdown.button>
                 </x-dropdown.menu>

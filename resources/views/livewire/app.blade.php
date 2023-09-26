@@ -12,7 +12,7 @@
                 {{-- toggle button --}}
                 <x-button.header-tool data-dropdown-toggle="more-tools" title="More project actions" class="p-1"><x-icon.ellipsis-horizontal-outline class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
-                <x-dropdown.menu class="w-60" id="more-tools">
+                <x-dropdown.menu class="w-60 xl:left-1/2 xl:-translate-x-1/2 right-0" id="more-tools">
                     <x-dropdown.button type="button" class="font-normal"><x-icon.circle-check class="w-6 h-6 mr-2"/>Show completed</x-dropdown.button>
                 </x-dropdown.menu>
             </x-dropdown.main>
