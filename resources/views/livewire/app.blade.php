@@ -1,6 +1,6 @@
 <div class="max-w-4xl mx-auto">
     {{-- header --}}
-    <x-layouts.header>
+    <x-layouts.header class="border-b">
         <div class="mr-auto">
             <h2 class="font-bold text-gray-800 text-xl">Inbox</h2>
         </div>
