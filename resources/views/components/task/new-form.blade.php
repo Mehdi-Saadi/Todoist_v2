@@ -27,7 +27,7 @@
                     <x-dropdown.button type="button" onclick="selectPriority(4)" class="font-normal"><x-icon.flag-outline class="w-5 h-5 mr-1"/>Priority 4</x-dropdown.button>
                 </x-dropdown.menu>
             </x-dropdown.main>
-            <x-button.header-tool class="border px-1"><x-icon.tag class="w-4 h-4 mr-1"/>Labels</x-button.header-tool>
+            <x-button.header-tool class="border px-1"><x-icon.tag-outline class="w-4 h-4 mr-1"/>Labels</x-button.header-tool>
             {{-- more actions dropdown --}}
             <x-dropdown.main>
                 {{-- toggle button --}}
