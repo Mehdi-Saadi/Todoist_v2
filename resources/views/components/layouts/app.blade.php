@@ -25,7 +25,7 @@
     <x-layouts.sidebar/>
 
     {{-- main --}}
-    <div class="w-full h-full pb-20 transition-all duration-300 @if($sidebarIsClose !== 'true') md:pl-[288px] @endif" id="main">
+    <div class="w-full h-full pb-20 transition-all duration-300 @if($sidebarIsClose !== true) md:pl-[288px] @endif" id="main">
         {{ $slot }}
     </div>
 </div>

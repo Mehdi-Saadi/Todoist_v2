@@ -1,4 +1,4 @@
-<div class="@if($sidebarIsClose === 'true') -translate-x-full @elseif($sidebarIsClose === 'false') translate-x-0 md:translate-x-0 @else -translate-x-full md:translate-x-0 @endif fixed h-full left-0 bg-zinc-50 z-30 transition duration-300 w-[288px]" id="sidebar" data-is-close="@if($sidebarIsClose === 'true'){{ 'true' }}@else{{ 'false' }}@endif">
+<div class="@if($sidebarIsClose === true) -translate-x-full @else translate-x-0 @endif fixed h-full left-0 bg-zinc-50 z-30 transition duration-300 w-[288px]" id="sidebar" data-is-close="@if($sidebarIsClose === true){{ 'true' }}@else{{ 'false' }}@endif">
     <div class="mt-8">
         <div class="flex flex-col m-5 space-y-1">
             <x-button.sidebar-main href="{{ route('app') }}" class="{{ addClassIfRouteIsActive('app', 'bg-zinc-200') }}" wire:navigate><x-icon.inbox class="w-6 h-6 text-blue-600 mr-1"/>Inbox</x-button.sidebar-main>
