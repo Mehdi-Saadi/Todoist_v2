@@ -4,7 +4,7 @@
             <x-button.sidebar-main href="{{ route('app') }}" class="{{ addClassIfRouteIsActive('app', 'bg-zinc-200') }}" wire:navigate><x-icon.inbox class="w-6 h-6 text-blue-600 mr-1"/>Inbox</x-button.sidebar-main>
             <x-button.sidebar-main href="{{ route('today') }}" class="{{ addClassIfRouteIsActive('today', 'bg-zinc-200') }}" wire:navigate><x-icon.calendar.today class="w-6 h-6 text-green-700 mr-1"/>Today</x-button.sidebar-main>
             <x-button.sidebar-main href="#" class=""><x-icon.calendar.days class="w-6 h-6 text-purple-700 mr-1"/>Upcoming</x-button.sidebar-main>
-            <x-button.sidebar-main href="#" class=""><x-icon.squares class="w-6 h-6 text-orange-800 mr-1"/>Labels</x-button.sidebar-main>
+            <x-button.sidebar-main href="{{ route('filters.labels') }}" class="{{ addClassIfRouteIsActive('filters.labels', 'bg-zinc-200') }}" wire:navigate><x-icon.squares class="w-6 h-6 text-orange-800 mr-1"/>Filters & Labels</x-button.sidebar-main>
         </div>
 
         {{-- archives --}}

@@ -1,11 +1,12 @@
 <?php
 
+use App\Livewire\App;
+use App\Livewire\Today;
+use App\Livewire\FiltersLabels;
 use App\Http\Controllers\Task\ColorController;
 use App\Http\Controllers\Task\DateController;
 use App\Http\Controllers\Task\OrderController;
 use App\Http\Controllers\Task\TaskController;
-use App\Livewire\App;
-use App\Livewire\Today;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', App::class)->name('app');
     Route::get('/today', Today::class)->name('today');
+    Route::get('/filters-labels', FiltersLabels::class)->name('filters.labels');
 });
 
 Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
