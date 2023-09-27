@@ -17,6 +17,11 @@
                 </x-dropdown.menu>
             </x-dropdown.main>
         </div>
+{{--        <div class="flex items-center cursor-pointer relative">--}}
+{{--            <input id="toggle" type="checkbox" class="sr-only absolute" />--}}
+{{--            <div class="w-8 h-4 bg-gray-400 rounded-full shadow-inner"></div>--}}
+{{--            <div class="toggle-dot absolute w-3 h-3 bg-white rounded-full shadow inset-y-0 left-0"></div>--}}
+{{--        </div>--}}
     </x-layouts.header>
 
     {{-- show tasks --}}

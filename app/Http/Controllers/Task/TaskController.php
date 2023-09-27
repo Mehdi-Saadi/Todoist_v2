@@ -29,7 +29,7 @@ class TaskController extends Controller
             $data['deadline_time'] = '23:59';
         }
 
-        $data['archive_id'] = 2;
+        $data['archive_id'] = 1;
 
 //        if($request['parent_id'] != 0) {
 //            $data += $request->validate([
