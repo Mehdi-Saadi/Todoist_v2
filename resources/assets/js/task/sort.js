@@ -38,13 +38,15 @@ export function taskSort() {
         });
     }
 }
-export function destoryTaskSort() {
-    sortableItems.forEach((sortableItem) => {
-        sortableItem.destroy();
-    });
-    sortableItems = [];
+export function destroyTaskSort() {
+    if (sortableItems !== []) {
+        sortableItems.forEach((sortableItem) => {
+            sortableItem.destroy();
+        });
+        sortableItems = [];
+    }
 }
 export function taskResort() {
-    destoryTaskSort();
+    destroyTaskSort();
     taskSort();
 }
