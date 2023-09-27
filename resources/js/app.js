@@ -38,16 +38,21 @@ if (screen.width < 768) {
 // task scripts
 // sort tasks for first time and after navigating.
 // in '/app/today', tasks must not be sortable
-import {destoryTaskSort, taskResort, taskSort} from "../assets/js/task/sort";
-if (! window.location.href.includes('today')) {
-    document.addEventListener('DOMContentLoaded', taskSort);
-}
+import {destroyTaskSort, taskResort, taskSort} from "../assets/js/task/sort";
+// roots where tasks should not be sorted on load
+document.addEventListener('DOMContentLoaded', () => {
+    if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels')) {
+        taskSort();
+    }
+});
+
+// roots where tasks should not be sorted on navigate
 document.addEventListener('livewire:navigated', () => {
     setTimeout(() => {
-        if (! window.location.href.includes('today')) {
+        if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels')) {
             taskResort();
         } else {
-            destoryTaskSort();
+            destroyTaskSort();
         }
     }, 50);
 });
@@ -72,6 +77,29 @@ import {datepickerSelect} from "../assets/js/task/form/datepickerSelect";
 window.datepickerSelect = datepickerSelect;
 import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames";
 window.MONTH_NAMES = MONTH_NAMES;
+
+// end task scripts
+
+// filters and labels scripts
+// sort labels only when user visits its page
+import {destroyLabelSort, labelResort, labelSort} from "../assets/js/filters-labels/sort.js";
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.href.includes('filters-labels')) {
+        labelSort();
+    }
+});
+
+document.addEventListener('livewire:navigated', () => {
+    setTimeout(() => {
+        if (window.location.href.includes('filters-labels')) {
+            labelResort();
+        } else {
+            destroyLabelSort();
+        }
+    }, 50);
+});
+
+// end filters and labels scripts
 
 // must comment lines below for working livewire...
 // import Alpine from 'alpinejs';
