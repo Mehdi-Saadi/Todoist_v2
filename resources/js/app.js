@@ -99,6 +99,9 @@ document.addEventListener('livewire:navigated', () => {
     }, 50);
 });
 
+import {toggleItems} from "../assets/js/filters-labels/toggleItems.js";
+window.toggleItems = toggleItems;
+
 // end filters and labels scripts
 
 // must comment lines below for working livewire...

@@ -24,16 +24,31 @@ class AppServiceProvider extends ServiceProvider
         // global variable for controlling today's date
         $today = date('d');
         // global variable for controlling sidebar
-        $sidebarIsClose = '';
+        $sidebarIsClose = null;
         if(isset($_COOKIE['sidebar_is_close'])) {
             switch ($_COOKIE['sidebar_is_close']) {
                 case 'true':
-                    $sidebarIsClose = 'true';
+                    $sidebarIsClose = true;
                     break;
                 case 'false':
-                    $sidebarIsClose = 'false';
+                    $sidebarIsClose = false;
             }
+        } else {
+            $sidebarIsClose = false;
         }
-        View::share(['sidebarIsClose' => $sidebarIsClose, 'today' => $today]);
+        // global varialbe for controlling toggleItems
+        $labelsIsClose = null;
+        if(isset($_COOKIE['labels-root_is_close'])) {
+            switch ($_COOKIE['labels-root_is_close']) {
+                case 'true':
+                    $labelsIsClose = true;
+                    break;
+                case 'false':
+                    $labelsIsClose = false;
+            }
+        } else {
+            $labelsIsClose = false;
+        }
+        View::share(['sidebarIsClose' => $sidebarIsClose, 'today' => $today, 'labelsIsClose' => $labelsIsClose]);
     }
 }
