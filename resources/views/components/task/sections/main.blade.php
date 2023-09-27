@@ -41,7 +41,7 @@
                     <hr class="my-1">
                     <x-dropdown.button type="button"><x-icon.link class="w-6 h-6 mr-2"/>Copy link to task</x-dropdown.button>
                     <hr class="my-1">
-                    <x-dropdown.button type="submit" onclick="deleteTask({{ $task->id }}, '{{ $task->name }}')" class="text-red-600"><x-icon.trash class="w-6 h-6 mr-2"/>Delete task</x-dropdown.button>
+                    <x-dropdown.button type="button" onclick="deleteTask({{ $task->id }}, '{{ $task->name }}')" class="text-red-600"><x-icon.trash class="w-6 h-6 mr-2"/>Delete task</x-dropdown.button>
                 </x-dropdown.menu>
             </x-dropdown.main>
         </div>
