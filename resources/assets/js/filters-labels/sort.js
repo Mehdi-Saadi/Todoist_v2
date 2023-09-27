@@ -27,7 +27,7 @@ export function labelSort() {
     });
 }
 
-export function destoryLabelSort() {
+export function destroyLabelSort() {
     if (sortableLabels !== null) {
         sortableLabels.destroy();
         sortableLabels = null;
@@ -35,6 +35,6 @@ export function destoryLabelSort() {
 }
 
 export function labelResort() {
-    destoryLabelSort();
+    destroyLabelSort();
     labelSort();
 }
