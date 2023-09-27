@@ -9,7 +9,7 @@
         </div>
         {{-- tools section --}}
         <div class="hidden md:flex invisible md:group-hover:visible cursor-auto">
-            <x-button.header-tool title="Edit task" class="p-1"><x-icon.pencil class="w-5 h-5"/></x-button.header-tool>
+            <x-button.header-tool title="Edit task" class="p-1"><x-icon.pencil class="w-6 h-6"/></x-button.header-tool>
             {{-- due date section --}}
             <x-dropdown.main>
                 {{-- toggle button --}}
@@ -27,7 +27,7 @@
                 <x-button.header-tool data-dropdown-toggle="task-more-tools-{{ $task->id }}" title="More task actions" class="p-1"><x-icon.ellipsis-horizontal class="w-6 h-6"/></x-button.header-tool>
                 {{-- menu --}}
                 <x-dropdown.menu class="w-60 2xl:left-1/2 2xl:-translate-x-1/2 right-0" id="task-more-tools-{{ $task->id }}">
-                    <x-dropdown.button type="button"><x-icon.pencil class="w-5 h-5 mr-2"/>Edit task</x-dropdown.button>
+                    <x-dropdown.button type="button"><x-icon.pencil class="w-6 h-6 mr-2"/>Edit task</x-dropdown.button>
                     <hr class="my-1">
                     <div class="flex flex-col mx-2">
                         <span class="text-xs">Priority</span>
