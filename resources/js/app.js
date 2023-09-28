@@ -3,11 +3,6 @@ import './bootstrap';
 import jQuery from 'jquery';
 window.$ = jQuery;
 
-// show and hide modal script
-import {showModal, hideModal} from "../assets/js/helpers/showAndHideModal.js";
-window.showModal = showModal;
-window.hideModal = hideModal;
-
 // dropdown scripts
 import {handleDropdowns} from "../assets/js/helpers/dropdown";
 document.addEventListener('DOMContentLoaded', handleDropdowns);
@@ -106,6 +101,17 @@ document.addEventListener('livewire:navigated', () => {
 
 import {toggleItems} from "../assets/js/filters-labels/toggleItems.js";
 window.toggleItems = toggleItems;
+
+import {closeAndResetLabelForm} from "../assets/js/filters-labels/closeAndResetLabelForm.js";
+window.closeAndResetLabelForm = closeAndResetLabelForm;
+
+// show and hide modal script
+import {showModal, hideModal} from "../assets/js/helpers/showAndHideModal.js";
+window.showModal = showModal;
+window.hideModal = hideModal;
+
+import {selectColor} from "../assets/js/filters-labels/selectColor.js";
+window.selectColor = selectColor;
 
 // end filters and labels scripts
 
