@@ -67,7 +67,7 @@
 
                     <div class="text-xs font-semibold pt-4 border-t mt-auto flex">
                         <div class="px-4 ml-auto space-x-3">
-                            <button type="button" onclick="closeAndResetLabelForm()" class="bg-zinc-100 hover:bg-zinc-200 w-16 h-8 text-center rounded-md">Cancel</button>
+                            <button type="button" onclick="hideAndResetLabelForm()" class="bg-zinc-100 hover:bg-zinc-200 w-16 h-8 text-center rounded-md">Cancel</button>
                             <button type="button" data-id="submit-btn" class="bg-red-550 enabled:hover:bg-red-850 w-16 h-8 text-center text-white rounded-md disabled:bg-opacity-50" disabled>Add</button>
                         </div>
                     </div>
