@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Label\LabelController;
 use App\Livewire\App;
 use App\Livewire\Today;
 use App\Livewire\FiltersLabels;
@@ -41,6 +42,12 @@ Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(
 });
 
 Route::put('/tasks/update', [OrderController::class, 'updateAll'])->middleware(['auth', 'verified', 'ajax.request']);
+
+Route::prefix('/label')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
+    Route::post('/create', [LabelController::class, 'create']);
+    Route::delete('/destroy', [LabelController::class, 'destroy']);
+
+});
 
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
 
