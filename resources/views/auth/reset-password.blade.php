@@ -17,19 +17,19 @@
                 {{-- email address --}}
                 <div class="relative mb-4">
                     <x-input.label for="email">Email</x-input.label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email..." value="{{ old('email', $request->email) }}" class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
+                    <input type="email" id="email" name="email" placeholder="Enter your email..." value="{{ old('email', $request->email) }}" class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
                     @error('email') <x-input.error :message="$message"/> @enderror
                 </div>
                 {{-- password --}}
                 <div class="relative mb-4">
                     <x-input.label for="password">Enter a new password</x-input.label>
-                    <input type="password" id="password" name="password" class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
+                    <input type="password" id="password" name="password" class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
                     @error('password') <x-input.error :message="$message"/> @enderror
                 </div>
                 {{-- password confirmation --}}
                 <div class="relative">
                     <x-input.label for="password_confirmation">Confirm your new password</x-input.label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
+                    <input type="password" id="password_confirmation" name="password_confirmation" class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
                 </div>
 
                 <p class="text-xs my-4">Your password must be at least 8 characters long. Avoid common words or patterns.</p>

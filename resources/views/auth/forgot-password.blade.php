@@ -17,7 +17,7 @@
                 {{-- email address --}}
                 <div class="relative mb-4">
                     <x-input.label for="email">Email</x-input.label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
+                    <input type="email" id="email" name="email" placeholder="Enter your email..." class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
                     @error('email') <x-input.error :message="$message"/> @enderror
                 </div>
 

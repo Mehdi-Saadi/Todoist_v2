@@ -16,19 +16,19 @@
                 {{-- name --}}
                 <div class="relative">
                     <x-input.label for="name">Name</x-input.label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('name') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name..." class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('name') border-red-600 focus:ring-red-600 @enderror" autocomplete="off" autofocus>
                     @error('name') <x-input.error :message="$message"/> @enderror
                 </div>
                 {{-- email address --}}
                 <div class="relative">
                     <x-input.label for="email">Email</x-input.label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email..." class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('email') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
                     @error('email') <x-input.error :message="$message"/> @enderror
                 </div>
                 {{-- password --}}
                 <div class="relative">
                     <x-input.label for="password">Password</x-input.label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password..." class="rounded-xl border-gray-200 focus:border-none focus:ring-gray-300 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
+                    <input type="password" id="password" name="password" placeholder="Enter your password..." class="rounded-xl border-gray-200 focus:border-gray-400 focus:ring-0 pb-1 pt-8 px-2 w-full h-16 @error('password') border-red-600 focus:ring-red-600 @enderror" autocomplete="off">
                     @error('password') <x-input.error :message="$message"/> @enderror
                 </div>
 
