@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->unsignedBigInteger('parent_id')->default(0);
-            $table->text('label')->nullable();
             $table->boolean('is_done')->default(0);
             $table->unsignedBigInteger('archive_id');
             $table->foreign('archive_id')->references('id')->on('archives')->cascadeOnUpdate()->cascadeOnDelete();

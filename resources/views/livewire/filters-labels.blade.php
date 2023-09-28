@@ -14,7 +14,7 @@
                     <x-button.header-tool class="p-0.5" onclick="toggleItems(this, 'labels-root')">@if($labelsIsClose === true) <x-icon.chevron-right class="w-5 h-5"/> @else <x-icon.chevron-below class="w-5 h-5"/> @endif</x-button.header-tool>
                     <h4 class="font-bold ml-2 text-gray-800">Labels</h4>
                 </div>
-                <x-button.header-tool class="p-1"><x-icon.plus-small class="w-5 h-5"/></x-button.header-tool>
+                <x-button.header-tool class="p-0.5"><x-icon.plus-small class="w-5 h-5"/></x-button.header-tool>
             </div>
             <hr class="my-1 ml-8">
             <div class="ml-8 @if($labelsIsClose === true) hidden @endif" id="labels-root" data-is-close="@if($labelsIsClose === true){{ 'true' }}@else{{ 'false' }}@endif">
