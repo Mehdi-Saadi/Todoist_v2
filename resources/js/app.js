@@ -3,6 +3,11 @@ import './bootstrap';
 import jQuery from 'jquery';
 window.$ = jQuery;
 
+// show and hide modal script
+import {showModal, hideModal} from "../assets/js/helpers/showAndHideModal.js";
+window.showModal = showModal;
+window.hideModal = hideModal;
+
 // dropdown scripts
 import {handleDropdowns} from "../assets/js/helpers/dropdown";
 document.addEventListener('DOMContentLoaded', handleDropdowns);
