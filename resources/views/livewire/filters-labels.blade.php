@@ -57,7 +57,7 @@
                             <button type="button" class="rounded border border-gray-300 focus:border-gray-400 focus:ring-0 w-full h-7 px-2 flex items-center text-sm" data-dropdown-toggle="new-label-form-all-labels"><x-icon.dot class="w-4 h-4 mr-2" style="color: #808080"/>Charcoal</button>
                             <x-dropdown.menu class="w-full max-h-72 overflow-auto" id="new-label-form-all-labels">
                                 @foreach(\App\Models\Color::all() as $color)
-                                    <x-dropdown.button type="button" class="items-center text-sm"><x-icon.dot class="w-4 h-4 mr-2" style="color: {{ $color->code }}"/>{{ $color->name }}</x-dropdown.button>
+                                    <x-dropdown.button type="button" class="items-center text-sm" onclick="selectColor('{{ $color->code }}', '{{ $color->name }}', 'new-label-form-all-labels', 'new-label-form-color')"><x-icon.dot class="w-4 h-4 mr-2" style="color: {{ $color->code }}"/>{{ $color->name }}</x-dropdown.button>
                                 @endforeach
                             </x-dropdown.menu>
                         </x-dropdown.main>
@@ -67,7 +67,7 @@
 
                     <div class="text-xs font-semibold pt-4 border-t mt-auto flex">
                         <div class="px-4 ml-auto space-x-3">
-                            <button type="button" onclick="hideModal('new-label-modal')" class="bg-zinc-100 hover:bg-zinc-200 w-16 h-8 text-center rounded-md">Cancel</button>
+                            <button type="button" onclick="closeAndResetLabelForm()" class="bg-zinc-100 hover:bg-zinc-200 w-16 h-8 text-center rounded-md">Cancel</button>
                             <button type="button" data-id="submit-btn" class="bg-red-550 enabled:hover:bg-red-850 w-16 h-8 text-center text-white rounded-md disabled:bg-opacity-50" disabled>Add</button>
                         </div>
                     </div>
