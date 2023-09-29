@@ -81,6 +81,7 @@ window.MONTH_NAMES = MONTH_NAMES;
 // end task scripts
 
 // filters and labels scripts
+import "../assets/js/filters-labels/addLabel";
 // sort labels only when user visits its page
 import {destroyLabelSort, labelResort, labelSort} from "../assets/js/filters-labels/sort.js";
 document.addEventListener('DOMContentLoaded', () => {
