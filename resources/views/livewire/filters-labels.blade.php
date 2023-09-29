@@ -38,7 +38,7 @@
         {{-- new label form --}}
         <div id="new-label-modal" class="fixed inset-0 items-center justify-center z-30 transition duration-300 hidden opacity-0">
             {{-- overlay --}}
-            <div class="absolute inset-0 bg-stone-900 bg-opacity-50" onclick="hideModal('new-label-modal')"></div>
+            <div class="absolute inset-0 bg-stone-900 bg-opacity-50" onclick="hideAndResetLabelForm()"></div>
             {{-- modal --}}
             <div class="max-w-md w-full bg-white sm:mx-auto mx-6 md:mt-24 mt-32 mb-auto rounded-xl shadow-xl z-30">
                 <div class="px-4 flex justify-between items-center py-2 border-b text-gray-800">
