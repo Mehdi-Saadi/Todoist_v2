@@ -219,5 +219,15 @@ function addTask(taskFormId) {
         submitBtn.setAttribute('type', 'button');
     });
 }
-document.addEventListener('DOMContentLoaded', () => {addTask('new-task-form')});
-document.addEventListener('livewire:navigated', () => {addTask('new-task-form')});
+document.addEventListener('DOMContentLoaded', () => {
+    if (! window.location.href.includes('filters-labels')) {
+        addTask('new-task-form');
+    }
+});
+document.addEventListener('livewire:navigated', () => {
+    setTimeout(() => {
+        if (! window.location.href.includes('filters-labels')) {
+            addTask('new-task-form');
+        }
+    }, 50);
+});

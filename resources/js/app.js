@@ -6,7 +6,9 @@ window.$ = jQuery;
 // dropdown scripts
 import {handleDropdowns} from "../assets/js/helpers/dropdown";
 document.addEventListener('DOMContentLoaded', handleDropdowns);
-document.addEventListener('livewire:navigated', handleDropdowns);
+document.addEventListener('livewire:navigated', () => {
+    setTimeout(handleDropdowns, 50);
+});
 
 // sidebar scripts
 import {getCookie} from "../assets/js/helpers/cookie";

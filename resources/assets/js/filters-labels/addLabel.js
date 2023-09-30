@@ -1,6 +1,6 @@
 import {toastAlert} from "../helpers/alert";
 import {ajaxRequest} from "../helpers/ajaxRequest";
-import {labelResort} from "./sort";
+import {destroyLabelSort, labelResort} from "./sort";
 
 function showSavedLabel(label) {
     const savedLabel = document.createElement('div');
@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 document.addEventListener('livewire:navigated', () => {
-    if (window.location.href.includes('filters-labels')) {
-        addLabel();
-    }
+    setTimeout(() => {
+        if (window.location.href.includes('filters-labels')) {
+            addLabel();
+        }
+    }, 50);
 });
