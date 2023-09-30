@@ -3,7 +3,7 @@ import {toastAlert} from "../helpers/alert";
 import {ajaxRequest} from "../helpers/ajaxRequest";
 import {taskResort} from "./sort";
 
-export function deleteTask(taskId, taskName) {
+export function deleteTask(taskID, taskName) {
     Swal.fire({
         title: "Are you sure you want to delete '" + taskName + "'?",
         icon: 'warning',
@@ -23,11 +23,11 @@ export function deleteTask(taskId, taskName) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            const task = document.getElementById(taskId);
+            const task = document.getElementById(taskID);
             task.remove();
             taskResort();
             toastAlert('', 'Task removed');
-            ajaxRequest('delete', '/task/destroy', taskId, function () {});
+            ajaxRequest('delete', '/task/destroy', taskID, function () {});
         }
     })
 }
