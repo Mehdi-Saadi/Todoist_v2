@@ -26,9 +26,11 @@ class LabelController extends Controller
         return response()->json($label);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): string
     {
-        $user = auth()->user();
+        $label = auth()->user()->labels()->findOrFail($request[0]);
+        $label->delete();
 
+        return 'sync';
     }
 }

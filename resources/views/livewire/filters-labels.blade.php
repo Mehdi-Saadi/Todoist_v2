@@ -28,7 +28,7 @@
                         <div class="hidden md:flex invisible md:group-hover:visible">
                             <x-button.header-tool title="Add to favorites" class="p-1"><x-icon.heart class="w-5 h-5"/></x-button.header-tool>
                             <x-button.header-tool title="Edit label" class="p-1"><x-icon.pencil class="w-5 h-5"/></x-button.header-tool>
-                            <x-button.header-tool title="Delete label" class="p-1"><x-icon.trash class="w-5 h-5"/></x-button.header-tool>
+                            <x-button.header-tool title="Delete label" class="p-1" onclick="deleteLabel({{ $label->id }}, '{{ $label->name }}')"><x-icon.trash class="w-5 h-5"/></x-button.header-tool>
                         </div>
                     </a>
                 @endforeach

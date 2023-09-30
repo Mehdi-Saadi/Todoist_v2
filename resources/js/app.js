@@ -82,6 +82,8 @@ window.MONTH_NAMES = MONTH_NAMES;
 
 // filters and labels scripts
 import "../assets/js/filters-labels/addLabel";
+import {deleteLabel} from "../assets/js/filters-labels/deleteLabel.js";
+window.deleteLabel = deleteLabel;
 // sort labels only when user visits its page
 import {destroyLabelSort, labelResort, labelSort} from "../assets/js/filters-labels/sort.js";
 document.addEventListener('DOMContentLoaded', () => {
