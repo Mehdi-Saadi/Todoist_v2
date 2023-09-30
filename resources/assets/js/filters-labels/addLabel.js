@@ -44,6 +44,8 @@ function addLabel() {
             labelResort();
 
             toastAlert('', 'Label created');
+        }, function (message) {
+            toastAlert('error', `${message.responseJSON.message}`);
         });
 
         hideAndResetLabelForm();

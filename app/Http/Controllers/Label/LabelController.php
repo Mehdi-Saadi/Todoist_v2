@@ -15,7 +15,7 @@ class LabelController extends Controller
 
         $data = $request->validate([
             'color' => [Rule::exists('colors', 'code')],
-            'name' => ['required'],
+            'name' => ['required', Rule::unique('labels', 'name')->where('user_id', $user->id)],
         ]);
 
         $data['order'] = $user->labels()->max('order');
@@ -26,7 +26,7 @@ class LabelController extends Controller
         return response()->json($label);
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $user = auth()->user();
 
