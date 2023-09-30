@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -11,9 +10,9 @@ class OrderController extends Controller
     /**
      * sort tasks on drop
      * @param Request $request
-     * @return JsonResponse|string
+     * @return string
      */
-    public function sort(Request $request): JsonResponse|string
+    public function sort(Request $request): string
     {
         $this->setOrder(auth()->user(), $request);
 

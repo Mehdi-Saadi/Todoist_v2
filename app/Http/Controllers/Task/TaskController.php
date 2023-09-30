@@ -55,7 +55,7 @@ class TaskController extends Controller
         return response()->json($task);
     }
 
-    public function destroy(Request $request): JsonResponse|string
+    public function destroy(Request $request): string
     {
         $this->destroyTasks(auth()->user(), $request);
 

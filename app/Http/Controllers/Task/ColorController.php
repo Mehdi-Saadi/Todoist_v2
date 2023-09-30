@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ColorController extends Controller
 {
-    public function updateColor(Request $request): JsonResponse|string
+    public function updateColor(Request $request): string
     {
         $user = auth()->user();
 
