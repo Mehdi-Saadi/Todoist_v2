@@ -1,6 +1,7 @@
 export function showModal(modalID) {
     const modal = document.getElementById(modalID);
     const nameInput = modal.querySelector('input[name="name"]');
+    document.body.classList.add('overflow-hidden');
     modal.classList.replace('hidden', 'flex');
     setTimeout(() => {
         modal.classList.replace('opacity-0', 'opacity-100');
@@ -13,11 +14,12 @@ export function showModal(modalID) {
 export function hideModal(modalID) {
     const modal = document.getElementById(modalID);
     const nameInput = modal.querySelector('input[name="name"]');
+    document.body.classList.remove('overflow-hidden');
     modal.classList.replace('opacity-100', 'opacity-0');
     setTimeout(() => {
         modal.classList.replace('flex', 'hidden');
         if (nameInput !== null) {
             nameInput.value = '';
         }
-    }, 50);
+    }, 300);
 }
