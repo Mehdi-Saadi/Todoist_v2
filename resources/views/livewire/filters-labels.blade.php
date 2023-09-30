@@ -18,7 +18,7 @@
             </div>
             <hr class="my-1 ml-8">
             <div class="ml-8 @if($labelsIsClose === true) hidden @endif" id="labels-root" data-is-close="@if($labelsIsClose === true){{ 'true' }}@else{{ 'false' }}@endif">
-                @foreach(auth()->user()->labels as $label)
+                @foreach(auth()->user()->labels->sortBy('order') as $label)
                     <a href="#" class="flex justify-between items-center py-2 px-3 border rounded-lg mt-1 group" id="{{ $label->id }}">
                         <div class="flex items-center">
                             <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>

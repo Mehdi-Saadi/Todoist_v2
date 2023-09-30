@@ -22,7 +22,7 @@ export function labelSort() {
             }
 
             // serialize and send request
-            ajaxRequest('put', '/labels/update', serialize(labels), function () {});
+            ajaxRequest('put', '/label/sort', serialize(labels), function () {});
         }
     });
 }
