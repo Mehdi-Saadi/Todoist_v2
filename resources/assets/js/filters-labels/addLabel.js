@@ -1,6 +1,6 @@
 import {toastAlert} from "../helpers/alert";
 import {ajaxRequest} from "../helpers/ajaxRequest";
-import {destroyLabelSort, labelResort} from "./sort";
+import {labelResort} from "./sort";
 
 function showSavedLabel(label) {
     const savedLabel = document.createElement('div');
