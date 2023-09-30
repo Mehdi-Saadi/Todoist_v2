@@ -21,5 +21,5 @@ export function hideModal(modalID) {
         if (nameInput !== null) {
             nameInput.value = '';
         }
-    }, 300);
+    }, 50);
 }
