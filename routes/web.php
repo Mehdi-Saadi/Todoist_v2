@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Label\LabelController;
 use App\Livewire\App;
 use App\Livewire\Today;
 use App\Livewire\FiltersLabels;
 use App\Http\Controllers\Task\ColorController;
 use App\Http\Controllers\Task\DateController;
-use App\Http\Controllers\Task\OrderController;
+use App\Http\Controllers\Task\OrderController as TaskOrderController;
 use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Label\OrderController as LabelOrderController;
+use App\Http\Controllers\Label\LabelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
 Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
     Route::post('/create', [TaskController::class, 'create']);
     Route::delete('/destroy', [TaskController::class, 'destroy']);
-    Route::put('/sort', [OrderController::class, 'sort']);
+    Route::put('/sort', [TaskOrderController::class, 'sort']);
 
     Route::prefix('/update')->group(function () {
         Route::put('/color', [ColorController::class, 'updateColor']);
@@ -45,7 +46,7 @@ Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(
 Route::prefix('/label')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
     Route::post('/create', [LabelController::class, 'create']);
     Route::delete('/destroy', [LabelController::class, 'destroy']);
-
+    Route::put('/sort', [LabelOrderController::class, 'sort']);
 });
 
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
