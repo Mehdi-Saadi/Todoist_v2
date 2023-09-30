@@ -34,14 +34,13 @@ Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
 Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
     Route::post('/create', [TaskController::class, 'create']);
     Route::delete('/destroy', [TaskController::class, 'destroy']);
+    Route::put('/sort', [OrderController::class, 'sort']);
 
     Route::prefix('/update')->group(function () {
         Route::put('/color', [ColorController::class, 'updateColor']);
         Route::put('/date', [DateController::class, 'updateDate']);
     });
 });
-
-Route::put('/tasks/update', [OrderController::class, 'updateAll'])->middleware(['auth', 'verified', 'ajax.request']);
 
 Route::prefix('/label')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
     Route::post('/create', [LabelController::class, 'create']);

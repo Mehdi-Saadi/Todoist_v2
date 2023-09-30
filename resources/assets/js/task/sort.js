@@ -33,7 +33,7 @@ export function taskSort() {
 
                 toastAlert('', 'Order changed');
                 // serialize and send tasks with ajax to server
-                ajaxRequest('put', '/tasks/update', serialize(root), function () {});
+                ajaxRequest('put', '/task/sort', serialize(root), function () {});
             }
         });
     }

@@ -13,7 +13,7 @@ class OrderController extends Controller
      * @param Request $request
      * @return JsonResponse|string
      */
-    public function updateAll(Request $request): JsonResponse|string
+    public function sort(Request $request): JsonResponse|string
     {
         $this->setOrder(auth()->user(), $request);
 
