@@ -1,6 +1,4 @@
-import {toastAlert} from "./alert.js";
-
-export function ajaxRequest(type, url, data, success) {
+export function ajaxRequest(type, url, data, success, error) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
@@ -13,8 +11,6 @@ export function ajaxRequest(type, url, data, success) {
         url: url,
         data: JSON.stringify(data),
         success: success,
-        error: function () {
-            toastAlert('error', 'Sorry, there is an error...');
-        }
+        error: error
     });
 }
