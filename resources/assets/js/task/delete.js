@@ -5,7 +5,7 @@ import {taskResort} from "./sort";
 
 export function deleteTask(taskID, taskName) {
     Swal.fire({
-        title: "Are you sure you want to delete '" + taskName + "'?",
+        title: `Are you sure you want to delete '${taskName}'?`,
         icon: 'warning',
         position: 'top',
         width: 'auto',
