@@ -29,6 +29,12 @@ class TaskController extends Controller
             $data['deadline_time'] = '23:59';
         }
 
+        if ($request['labels'] !== []) {
+            $request->validate([
+                'labels' => ['array', Rule::exists('labels', 'id')->where('user_id', $user->id)],
+            ]);
+        }
+
         $data['archive_id'] = 1;
 
 //        if($request['parent_id'] != 0) {
@@ -47,6 +53,10 @@ class TaskController extends Controller
         ++$data['order'];
 
         $task = $user->tasks()->create($data);
+
+        if ($request['labels'] !== []) {
+            $task->labels()->sync($request['labels']);
+        }
 
 //        $user->labels()->firstOrCreate([
 //
