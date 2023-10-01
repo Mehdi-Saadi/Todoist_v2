@@ -79,6 +79,8 @@ import {datepickerSelect} from "../assets/js/task/form/datepickerSelect";
 window.datepickerSelect = datepickerSelect;
 import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames";
 window.MONTH_NAMES = MONTH_NAMES;
+import {selectLabel} from "../assets/js/task/form/selectLabel.js";
+window.selectLabel = selectLabel;
 
 // end task scripts
 
