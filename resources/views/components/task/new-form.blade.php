@@ -1,4 +1,4 @@
- <form class="border border-gray-400 rounded-xl hidden" id="new-task-form">
+<form class="border border-gray-400 rounded-xl hidden" id="new-task-form">
     <div class="flex flex-col my-2 space-y-1">
         <input type="hidden" name="color" value="#808080" id="new-task-form-color">
         <input type="hidden" name="deadline_date" value="" id="new-task-form-deadline-date">
@@ -27,7 +27,20 @@
                     <x-dropdown.button type="button" onclick="selectPriority(4)" class="font-normal"><x-icon.flag-outline class="w-5 h-5 mr-1"/>Priority 4</x-dropdown.button>
                 </x-dropdown.menu>
             </x-dropdown.main>
-            <x-button.header-tool class="border px-1"><x-icon.tag-outline class="w-4 h-4 mr-1"/>Labels</x-button.header-tool>
+            {{-- label dropdown --}}
+            <x-dropdown.main>
+                {{-- toggle button --}}
+                <x-button.header-tool data-dropdown-toggle="new-task-form-label" class="border px-1 h-full"><x-icon.tag-outline class="w-4 h-4 mr-1"/>Labels</x-button.header-tool>
+                {{-- menu --}}
+                <x-dropdown.menu class="-translate-x-[10.5rem] sm:w-96 w-72 max-h-40 overflow-y-auto" id="new-task-form-label">
+                    @foreach(auth()->user()->labels->sortBy('order') as $label)
+                        <x-dropdown.button type="button" onclick="" class="font-normal">
+                            <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>
+                            <span class="text-gray-800 whitespace-nowrap overflow-hidden">{{ $label->name }}</span>
+                        </x-dropdown.button>
+                    @endforeach
+                </x-dropdown.menu>
+            </x-dropdown.main>
             {{-- more actions dropdown --}}
             <x-dropdown.main>
                 {{-- toggle button --}}
