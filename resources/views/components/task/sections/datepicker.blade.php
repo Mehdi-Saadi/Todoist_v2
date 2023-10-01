@@ -29,7 +29,7 @@
                 <span x-text="year"></span>
             </div>
             <div class="text-gray-500 space-x-1">
-                <span class="transition ease-in-out duration-100 inline-flex rounded" :class="month === currentMonth && year === currentYear ? 'opacity-25' : 'hover:bg-gray-100 cursor-pointer'" @click="previousMonth()">
+                <span class="transition ease-in-out duration-100 inline-flex rounded" :class="(year < currentYear || month <= currentMonth && year === currentYear) ? 'opacity-25' : 'hover:bg-gray-100 cursor-pointer'" @click="previousMonth()">
                     <x-icon.chevron-left class="w-5 h-5"/>
                 </span>
                 <span class="cursor-pointer transition ease-in-out duration-100 inline-flex hover:bg-gray-100 rounded" @click="nextMonth()">
