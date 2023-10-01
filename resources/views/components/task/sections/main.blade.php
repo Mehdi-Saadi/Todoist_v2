@@ -51,11 +51,9 @@
         <div>{{ $task->description }}</div>
         <div class="flex space-x-1">
             {!! controlDate($task) !!}
-            @if($task->labels !== null)
-                @foreach($task->labels as $label)
-                    <span style="color: {{ $label->color }}" class="flex items-center"><x-icon.tag-outline class="w-3 h-3 mr-0.5"/>{{ $label->name }}</span>
-                @endforeach
-            @endif
+            @foreach($task->labels as $label)
+                <span style="color: {{ $label->color }}" class="flex items-center"><x-icon.tag-outline class="w-3 h-3 mr-0.5"/>{{ $label->name }}</span>
+            @endforeach
         </div>
     </div>
 </div>
