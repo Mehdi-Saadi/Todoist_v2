@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('label_task', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('label_id');
             $table->foreign('label_id')->references('id')->on('labels')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('task_id');
+            $table->foreign('task_id')->references('id')->on('tasks')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
