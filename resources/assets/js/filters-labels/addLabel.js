@@ -28,7 +28,12 @@ function addLabel() {
         const nameInput = target.querySelector('input[name="name"]');
         // check that inputs must not empty
         if (nameInput.value === '') {
-            return
+            return;
+        }
+
+        if (nameInput.value.length > 60) {
+            toastAlert('error', 'Name must not be grater than 60 characters');
+            return;
         }
 
         let data = {
