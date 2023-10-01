@@ -6,7 +6,7 @@ import {selectPriority} from "./form/selectPriority";
 import {DAY_NAMES} from "../helpers/dayAndMonthNames.js";
 import {controlDate} from "./helpers/datepicker/controlDate.js";
 import {calendar_dot_4} from "./helpers/datepicker/calendarDotSVG.js";
-import {arrayOFLabelIDs, resetArrayOfLabelsIDs} from "./form/selectLabel.js";
+import {arrayOFLabelIDs, resetArrayOfLabelIDs} from "./form/selectLabel.js";
 
 function getNextMondayDate() {
     let date = new Date();
@@ -213,7 +213,7 @@ function addTask(taskFormId) {
         // set inputs to default value
         selectPriority(4);
         document.dispatchEvent(new CustomEvent('reset.due.date'));
-        resetArrayOfLabelsIDs();
+        resetArrayOfLabelIDs();
         nameInput.value = '';
         descriptionInput.value = '';
 

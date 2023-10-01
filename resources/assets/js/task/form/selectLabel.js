@@ -9,6 +9,9 @@ export function selectLabel(labelID) {
     }
 }
 
-export function resetArrayOfLabelsIDs() {
+export function resetArrayOfLabelIDs() {
+    arrayOFLabelIDs.forEach(function (labelID) {
+        document.getElementById(`label-${labelID}`).checked = false;
+    });
     arrayOFLabelIDs = [];
 }
