@@ -34,10 +34,15 @@
                 {{-- menu --}}
                 <x-dropdown.menu class="-translate-x-[10.5rem] sm:w-96 w-72 max-h-40 overflow-y-auto" id="new-task-form-label">
                     @foreach(auth()->user()->labels->sortBy('order') as $label)
-                        <x-dropdown.button type="button" onclick="" class="font-normal">
-                            <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>
-                            <span class="text-gray-800 whitespace-nowrap overflow-hidden">{{ $label->name }}</span>
-                        </x-dropdown.button>
+                        <div class="grid grid-cols-9 rounded text-sm hover:bg-gray-100">
+                            <button type="button" onclick="" class="col-span-8 text-left px-3 py-1 flex">
+                                <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>
+                                <span class="text-gray-800 whitespace-nowrap overflow-hidden sm:w-64 w-40">{{ $label->name }}</span>
+                            </button>
+                            <div class="col-span-1 flex items-center px-3 py-1">
+                                <input type="checkbox" class="rounded cursor-pointer focus:ring-transparent" onclick="selectLabel({{ $label->id }})">
+                            </div>
+                        </div>
                     @endforeach
                 </x-dropdown.menu>
             </x-dropdown.main>
