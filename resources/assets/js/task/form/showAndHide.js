@@ -1,5 +1,6 @@
 // show new task form and hide add task button
 import {selectPriority} from "./selectPriority";
+import {resetArrayOfLabelIDs} from "./selectLabel.js";
 
 export function showForm(buttonId, formId) {
     const form = document.getElementById(formId);
@@ -17,6 +18,7 @@ export function hideForm(buttonId, formId) {
     document.querySelector('input[name="description"]').value = '';
     document.dispatchEvent(new CustomEvent('reset.due.date'));
     selectPriority(4);
+    resetArrayOfLabelIDs();
     submitBtn.setAttribute('disabled', 'true');
     submitBtn.setAttribute('type', 'button');
 }
