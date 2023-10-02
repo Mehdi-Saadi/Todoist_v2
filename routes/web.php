@@ -31,7 +31,7 @@ Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', App::class)->name('app');
     Route::get('/today', Today::class)->name('today');
     Route::get('/filters-labels', FiltersLabels::class)->name('filters.labels');
-    Route::get('/label/{label}', Label::class);
+    Route::get('/label/{label}', Label::class)->name('label');
 });
 
 Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
