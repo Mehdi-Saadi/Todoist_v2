@@ -3,6 +3,7 @@
 use App\Livewire\App;
 use App\Livewire\Today;
 use App\Livewire\FiltersLabels;
+use App\Livewire\Label;
 use App\Http\Controllers\Task\ColorController;
 use App\Http\Controllers\Task\DateController;
 use App\Http\Controllers\Task\OrderController as TaskOrderController;
@@ -30,6 +31,7 @@ Route::prefix('/app')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', App::class)->name('app');
     Route::get('/today', Today::class)->name('today');
     Route::get('/filters-labels', FiltersLabels::class)->name('filters.labels');
+    Route::get('/label/{label}', Label::class);
 });
 
 Route::prefix('/task')->middleware(['auth', 'verified', 'ajax.request'])->group(function () {
