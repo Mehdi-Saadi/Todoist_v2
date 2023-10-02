@@ -1,4 +1,3 @@
-{{-- show today tasks, if task not for today, check its children --}}
 @foreach($tasks as $task)
     <x-task.sections.parent id="{{ $task->id }}">
         {{-- main section --}}
