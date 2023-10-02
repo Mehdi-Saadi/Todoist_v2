@@ -13,7 +13,7 @@
     {{-- the 'grandParentTask' id is for stopping the loop of getting parents in 'doneCircleEffect.js' file --}}
     <div class="mx-2 mt-2 flex flex-col" id="grandParentTask">
         <x-task.sections.children id="nestedRoot">
-            <x-task.today-todo :$tasks/>
+            <x-task.custom-todo :$tasks/>
         </x-task.sections.children>
     </div>
     <div class="px-7 mt-5 pb-20">
