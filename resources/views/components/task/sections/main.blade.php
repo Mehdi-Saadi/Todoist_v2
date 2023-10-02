@@ -52,7 +52,7 @@
         <div class="flex space-x-1">
             {!! controlDate($task) !!}
             @foreach($task->labels as $label)
-                <a href="{{ route('label', $label->id) }}" style="color: {{ $label->color }}" class="flex items-center hover:underline"><x-icon.tag-outline class="w-3 h-3 mr-0.5"/>{{ $label->name }}</a>
+                <a href="{{ route('label', $label->id) }}" style="color: {{ $label->color }}" class="flex items-center hover:underline" wire:navigate><x-icon.tag-outline class="w-3 h-3 mr-0.5"/>{{ $label->name }}</a>
             @endforeach
         </div>
     </div>
