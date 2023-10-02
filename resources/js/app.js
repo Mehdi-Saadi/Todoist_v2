@@ -43,7 +43,7 @@ if (screen.width < 768) {
 import {destroyTaskSort, taskResort, taskSort} from "../assets/js/task/sort";
 // roots where tasks should not be sorted on load
 document.addEventListener('DOMContentLoaded', () => {
-    if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels')) {
+    if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels') && ! window.location.href.includes('label')) {
         taskSort();
     }
 });
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // roots where tasks should not be sorted on navigate
 document.addEventListener('livewire:navigated', () => {
     setTimeout(() => {
-        if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels')) {
+        if (! window.location.href.includes('today') && ! window.location.href.includes('filters-labels') && ! window.location.href.includes('label')) {
             taskResort();
         } else {
             destroyTaskSort();
