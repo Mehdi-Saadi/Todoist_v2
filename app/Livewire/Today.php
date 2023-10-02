@@ -10,7 +10,7 @@ class Today extends Component
 
     public function mount()
     {
-        $this->tasks = auth()->user()->tasks->where('parent_id', 0)->where('is_done', 0)->sortBy('order');
+        $this->tasks = auth()->user()->tasks->where('is_done', 0)->where('deadline_date', date('Y-m-d'))->sortBy('order');
     }
 
     public function render()
