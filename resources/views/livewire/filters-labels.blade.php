@@ -20,7 +20,7 @@
             <div class="ml-8 @if($labelsIsClose === true) hidden @endif" id="labels-root" data-is-close="@if($labelsIsClose === true){{ 'true' }}@else{{ 'false' }}@endif">
                 @foreach(auth()->user()->labels->sortBy('order') as $label)
                     <div class="grid grid-cols-9 border rounded-lg mt-1 group" id="{{ $label->id }}">
-                        <a href="#" class="flex items-center col-span-8 py-2 pl-3">
+                        <a href="{{ route('label', $label->id) }}" class="flex items-center col-span-8 py-2 pl-3" wire:navigate>
                             <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>
                             <span class="text-gray-800">{{ $label->name }}</span>
                         </a>
