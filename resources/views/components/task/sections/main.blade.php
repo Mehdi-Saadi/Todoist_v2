@@ -1,11 +1,11 @@
 <div class="flex flex-col group cursor-pointer">
     <div class="flex justify-between">
-        <div class="flex">
+        <div class="flex items-center">
             <x-icon.handle class="w-6 h-6 cursor-grab active:cursor-grabbing invisible group-hover:visible hidden md:block"/>
             {{-- circle --}}
             {{ $slot }}
             {{-- name --}}
-            <span>{{ $task->name }}</span>
+            <span class="text-sm">{{ $task->name }}</span>
         </div>
         {{-- tools section --}}
         <div class="hidden md:flex invisible md:group-hover:visible cursor-auto">

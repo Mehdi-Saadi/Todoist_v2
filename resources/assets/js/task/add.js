@@ -39,15 +39,15 @@ function controlAndShowDate(task) {
 function showSavedTask(parentRootId, task) {
     const today = new Date();
     const savedTask = document.createElement('div');
-    savedTask.setAttribute('class', 'relative block px-1 py-2 border rounded-lg mt-1');
+    savedTask.setAttribute('class', 'relative block p-1 border rounded-lg mt-1');
     savedTask.setAttribute('id', `${task.id}`);
     savedTask.innerHTML +=
         `<div class="flex flex-col group cursor-pointer">
             <div class="flex justify-between">
-                <div class="flex">
+                <div class="flex items-center">
                     <svg class="w-6 h-6 cursor-grab active:cursor-grabbing invisible group-hover:visible hidden md:block"><path fill="currentColor" d="M14.5 15.5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 15.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 15.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 10.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 10.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 5.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 5.5z"></path></svg>
                     <svg class="w-6 h-6 mr-1 rounded-full" style="color: ${task.color}" id="task-circle-${task.id}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    <span>${task.name}</span>
+                    <span class="text-sm">${task.name}</span>
                 </div>
 
                 <div class="hidden md:flex invisible md:group-hover:visible cursor-auto">
@@ -151,11 +151,9 @@ function showSavedTask(parentRootId, task) {
             </div>
             <div class="md:mx-13 mx-7 text-xs">
                 <div>${task.description}</div>
-                <div>
-                    <span></span>
+                <div class="flex space-x-1">
                     ${controlAndShowDate(task)}
-                    <span></span>
-                    <span></span>
+                    <!-- labels here -->
                 </div>
             </div>
         </div>
