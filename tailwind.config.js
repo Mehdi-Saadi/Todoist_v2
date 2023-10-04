@@ -16,17 +16,17 @@ export default {
             colors: {
                 red: {
                     550: '#dc4c3e',
-                    850: '#b03d32'
+                    850: '#b03d32',
                 }
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-            spacing: {
-                '13': '3.25rem',
-            },
             fontSize: {
                 '2xs': '0.625rem',
+            },
+            spacing: {
+                '13': '3.25rem',
             },
         },
     },
