@@ -15,6 +15,7 @@
 
 {{-- overlay --}}
 <div id="overlay" onclick="closeSidebar()" class="w-full h-full z-30 fixed top-0 right-0 bg-stone-900 bg-opacity-50 hidden"></div>
+<audio src="{{ asset('/assets/audio/bubble.mp3') }}" id="bubble"></audio>
 
 {{-- topbar --}}
 <x-layouts.topbar/>
