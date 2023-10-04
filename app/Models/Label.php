@@ -18,6 +18,10 @@ class Label extends Model
         'is_favorite'
     ];
 
+    protected $hidden = [
+        'pivot'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
