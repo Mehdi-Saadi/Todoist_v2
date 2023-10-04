@@ -46,7 +46,7 @@ function showSavedTask(parentRootId, task) {
             <div class="flex justify-between">
                 <div class="flex items-center">
                     <svg class="w-6 h-6 cursor-grab active:cursor-grabbing invisible group-hover:visible hidden md:block"><path fill="currentColor" d="M14.5 15.5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 15.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 15.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 10.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 10.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 5.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 5.5z"></path></svg>
-                    <div class="relative w-5 h-5 mr-2 group/circle" style="color: ${task.color};" id="task-circle-${task.id}">
+                    <div class="relative w-5 h-5 mr-2 group/circle active:scale-90" style="color: ${task.color};" id="task-circle-${task.id}">
                         <span class="rounded-full border border-current w-full h-full absolute" style="background: ${task.color}14;"></span>
                         <svg class="opacity-0 w-5 h-5 absolute group-hover/circle:opacity-100 rounded-full transition duration-300" viewBox="0 0 24 24" fill="currentColor"><path opacity=".1" fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z"></path><path d="M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z"></path></svg>
                     </div>
