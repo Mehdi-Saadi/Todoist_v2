@@ -36,32 +36,40 @@ function controlAndShowDate(task) {
     }
 }
 
-function showSavedTask(parentRootId, task) {
+function showLabels(labels) {
+    let labelTags = ``;
+    for (let label of labels) {
+        labelTags += `<a href="/app/label/${label.id}" style="color: ${label.color}" class="flex items-center hover:underline" wire:navigate=""><svg class="w-3 h-3 mr-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.828 2H12a2 2 0 012 2v4.172a2 2 0 01-.586 1.414l-4 4a2 2 0 01-2.828 0L2.414 9.414a2 2 0 010-2.828l4-4A2 2 0 017.828 2zm0 1a1 1 0 00-.707.293l-4 4a1 1 0 000 1.414l4.172 4.172a1 1 0 001.414 0l4-4A1 1 0 0013 8.172V4a1 1 0 00-1-1H7.828zM10 7a1 1 0 100-2 1 1 0 000 2z" fill="currentColor"></path></svg>${label.name}</a>`;
+    }
+    return labelTags;
+}
+
+function showSavedTask(parentRootId, response) {
     const today = new Date();
     const savedTask = document.createElement('div');
     savedTask.setAttribute('class', 'relative block p-1 border rounded-lg mt-1');
-    savedTask.setAttribute('id', `${task.id}`);
+    savedTask.setAttribute('id', `${response.task.id}`);
     savedTask.innerHTML +=
         `<div class="flex flex-col group cursor-pointer">
             <div class="flex justify-between">
                 <div class="flex items-center">
                     <svg class="w-6 h-6 cursor-grab active:cursor-grabbing invisible group-hover:visible hidden md:block"><path fill="currentColor" d="M14.5 15.5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 15.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 15.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 10.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 10.5zm5-5a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 0114.5 5.5zm-5 0a1.5 1.5 0 11-.001 3.001A1.5 1.5 0 019.5 5.5z"></path></svg>
-                    <div class="relative w-5 h-5 mr-2 group/circle active:scale-90" style="color: ${task.color};" id="task-circle-${task.id}">
-                        <span class="rounded-full border border-current w-full h-full absolute" style="background: ${task.color}14;"></span>
+                    <div class="relative w-5 h-5 mr-2 group/circle active:scale-90" style="color: ${response.task.color};" id="task-circle-${response.task.id}">
+                        <span class="rounded-full border border-current w-full h-full absolute" style="background: ${response.task.color}14;"></span>
                         <svg class="opacity-0 w-5 h-5 absolute group-hover/circle:opacity-100 rounded-full transition duration-300" viewBox="0 0 24 24" fill="currentColor"><path opacity=".1" fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z"></path><path d="M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z"></path></svg>
                     </div>
-                    <span class="text-sm">${task.name}</span>
+                    <span class="text-sm">${response.task.name}</span>
                 </div>
 
                 <div class="hidden md:flex invisible md:group-hover:visible cursor-auto">
                     <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" title="Edit task"><svg class="w-6 h-6" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"></path><path stroke="currentColor" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"></path></g></svg></button>
 
                     <div class="relative">
-                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" data-dropdown-toggle="task-due-date-${task.id}" title="Set due date"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2zM5 6a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H6a1 1 0 01-1-1V6zm12 10a1 1 0 11-2 0 1 1 0 012 0zM7 8a.5.5 0 000 1h10a.5.5 0 000-1H7z" fill="currentColor"></path></svg></button>
+                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" data-dropdown-toggle="task-due-date-${response.task.id}" title="Set due date"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2zM5 6a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H6a1 1 0 01-1-1V6zm12 10a1 1 0 11-2 0 1 1 0 012 0zM7 8a.5.5 0 000 1h10a.5.5 0 000-1H7z" fill="currentColor"></path></svg></button>
 
-                        <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-64" id="task-due-date-${task.id}">
+                        <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-64" id="task-due-date-${response.task.id}">
                             <div class="p-1">
-                                <div x-data="datepickerSave(${task.id}, '${task.deadline_date}')" x-init="[initDate(), initDatepicker()]">
+                                <div x-data="datepickerSave(${response.task.id}, '${response.task.deadline_date}')" x-init="[initDate(), initDatepicker()]">
                                     <div class="text-xs">
                                         <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex justify-between" type="button" @click="chooseDateShortcut('today')">
                                             <span class="flex items-center font-bold"><svg class="w-6 h-6 mr-2 text-green-700" viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><path fill-rule="nonzero" d="M6 4.5h12A1.5 1.5 0 0 1 19.5 6v2.5h-15V6A1.5 1.5 0 0 1 6 4.5z" opacity=".1"></path><path fill-rule="nonzero" d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6zm1 3h10a.5.5 0 1 1 0 1H7a.5.5 0 0 1 0-1z"></path><text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)" font-weight="500"><tspan x="8" y="15" text-anchor="middle">${("0" + today.getDate()).slice(-2)}</tspan></text></g></svg>Today</span>
@@ -128,34 +136,35 @@ function showSavedTask(parentRootId, task) {
                     <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" title="Comment on task"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" data-svgs-path="sm1/comments.svg"><path fill="currentColor" fill-rule="nonzero" d="M11.707 20.793A1 1 0 0 1 10 20.086V18H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4.5l-2.793 2.793zM11 20.086L14.086 17H19a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h6v3.086z"></path></svg></button>
 
                     <div class="relative">
-                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" data-dropdown-toggle="task-more-tools-${task.id}" title="More task actions"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path></svg></button>
+                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1" data-dropdown-toggle="task-more-tools-${response.task.id}" title="More task actions"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path></svg></button>
 
-                        <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-60" id="task-more-tools-${task.id}">
+                        <div class="hidden absolute z-10 mt-2 rounded-lg md:left-1/2 md:-translate-x-1/2 right-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-sm w-60" id="task-more-tools-${response.task.id}">
                             <div class="p-1">
                                 <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex" type="button"><svg class="w-5 h-5 mr-2"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M9.5 19h10a.5.5 0 110 1h-10a.5.5 0 110-1z"></path><path stroke="currentColor" d="M4.42 16.03a1.5 1.5 0 00-.43.9l-.22 2.02a.5.5 0 00.55.55l2.02-.21a1.5 1.5 0 00.9-.44L18.7 7.4a1.5 1.5 0 000-2.12l-.7-.7a1.5 1.5 0 00-2.13 0L4.42 16.02z"></path></g></svg>Edit task</button>
                                 <hr class="my-1">
                                 <div class="flex flex-col mx-2">
                                     <span class="text-xs">Priority</span>
                                     <div class="flex space-x-2 mb-1 mt-2">
-                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-red-600 ${task.color === '#db4035' ? 'ring-gray-200 ring-1' : ''}" title="Priority 1" onclick="setPriority(1, ${task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
-                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-orange-400 ${task.color === '#ff9933' ? 'ring-gray-200 ring-1' : ''}" title="Priority 2" onclick="setPriority(2, ${task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
-                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-blue-600 ${task.color === '#4073ff' ? 'ring-gray-200 ring-1' : ''}" title="Priority 3" onclick="setPriority(3, ${task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
-                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 ${task.color === '#808080' ? 'ring-gray-200 ring-1' : ''}" title="Priority 4" onclick="setPriority(4, ${task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="4"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a.5.5 0 01.223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.822 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0120 4.5V13a.5.5 0 01-.223.416c-1.09.727-2.518 1.084-4.277 1.084-1.113 0-1.92-.197-3.658-.776C10.204 13.178 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777V19.5a.5.5 0 01-1 0V5zm4.5 7c-1.367 0-2.535.216-3.5.654V5.277c.886-.515 2.05-.777 3.5-.777.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.367 0 2.535-.216 3.5-.654v7.377c-.886.515-2.05.777-3.5.777-.97 0-1.704-.178-3.342-.724C10.421 12.196 9.613 12 8.5 12z" fill="currentColor"></path></svg></button>
+                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-red-600 ${response.task.color === '#db4035' ? 'ring-gray-200 ring-1' : ''}" title="Priority 1" onclick="setPriority(1, ${response.task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
+                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-orange-400 ${response.task.color === '#ff9933' ? 'ring-gray-200 ring-1' : ''}" title="Priority 2" onclick="setPriority(2, ${response.task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
+                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 text-blue-600 ${response.task.color === '#4073ff' ? 'ring-gray-200 ring-1' : ''}" title="Priority 3" onclick="setPriority(3, ${response.task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="1"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.223 4.584A.5.5 0 004 5v14.5a.5.5 0 001 0v-5.723C5.886 13.262 7.05 13 8.5 13c.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.759 0 3.187-.357 4.277-1.084A.5.5 0 0020 13V4.5a.5.5 0 00-.777-.416C18.313 4.69 17.075 5 15.5 5c-.97 0-1.704-.178-3.342-.724C10.421 3.696 9.613 3.5 8.5 3.5c-1.758 0-3.187.357-4.277 1.084z" fill="currentColor"></path></svg></button>
+                                        <button type="button" class="hover:bg-zinc-100 rounded transition duration-300 flex items-center p-1 ${response.task.color === '#808080' ? 'ring-gray-200 ring-1' : ''}" title="Priority 4" onclick="setPriority(4, ${response.task.id}, this)"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon-name="priority-icon" data-priority="4"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a.5.5 0 01.223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.822 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0120 4.5V13a.5.5 0 01-.223.416c-1.09.727-2.518 1.084-4.277 1.084-1.113 0-1.92-.197-3.658-.776C10.204 13.178 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777V19.5a.5.5 0 01-1 0V5zm4.5 7c-1.367 0-2.535.216-3.5.654V5.277c.886-.515 2.05-.777 3.5-.777.97 0 1.704.178 3.342.724 1.737.58 2.545.776 3.658.776 1.367 0 2.535-.216 3.5-.654v7.377c-.886.515-2.05.777-3.5.777-.97 0-1.704-.178-3.342-.724C10.421 12.196 9.613 12 8.5 12z" fill="currentColor"></path></svg></button>
                                     </div>
                                 </div>
                                 <hr class="my-1">
                                 <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex" type="button"><svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.354 12.95l-.708-.707L5.88 14.01a3 3 0 104.242 4.243l3.536-3.536a3 3 0 000-4.242l-.707.707a2 2 0 010 2.828l-3.536 3.536a2 2 0 11-2.828-2.829l1.768-1.767z" fill="currentColor"></path><path d="M15.778 11.182l.707.707 1.768-1.768A3 3 0 1014.01 5.88l-3.535 3.535a3 3 0 000 4.243l.707-.707a2 2 0 010-2.829l3.535-3.535a2 2 0 112.829 2.828l-1.768 1.768z" fill="currentColor"></path></svg>Copy link to task</button>
                                 <hr class="my-1">
-                                <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex text-red-600" type="button" onclick="deleteTask(${task.id}, '${task.name}')"><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><rect width="14" height="1" x="5" y="6" fill="currentColor" rx="0.5"></rect><path fill="currentColor" d="M10 9h1v8h-1V9zm3 0h1v8h-1V9z"></path><path stroke="currentColor" d="M17.5 6.5h-11V18A1.5 1.5 0 008 19.5h8a1.5 1.5 0 001.5-1.5V6.5zm-9 0h7V5A1.5 1.5 0 0014 3.5h-4A1.5 1.5 0 008.5 5v1.5z"></path></g></svg>Delete task</button>
+                                <button class="w-full rounded text-left px-3 py-1 hover:bg-gray-100 flex text-red-600" type="button" onclick="deleteTask(${response.task.id}, '${response.task.name}')"><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><rect width="14" height="1" x="5" y="6" fill="currentColor" rx="0.5"></rect><path fill="currentColor" d="M10 9h1v8h-1V9zm3 0h1v8h-1V9z"></path><path stroke="currentColor" d="M17.5 6.5h-11V18A1.5 1.5 0 008 19.5h8a1.5 1.5 0 001.5-1.5V6.5zm-9 0h7V5A1.5 1.5 0 0014 3.5h-4A1.5 1.5 0 008.5 5v1.5z"></path></g></svg>Delete task</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="md:mx-13 mx-7 text-xs">
-                <div>${task.description}</div>
+                <div>${response.task.description}</div>
                 <div class="flex space-x-1">
-                    ${controlAndShowDate(task)}
+                    ${controlAndShowDate(response.task)}
+                    ${showLabels(response.labels)}
                     <!-- labels here -->
                 </div>
             </div>
@@ -186,11 +195,11 @@ function addTask(taskFormId) {
             description: descriptionInput.value,
         };
 
-        ajaxRequest('post', "/task/create", data, function (task) {
-            if(task.description === null) task.description = '';
-            if(task.deadline_date === undefined) task.deadline_date = '';
+        ajaxRequest('post', "/task/create", data, function (response) {
+            if(response.task.description === null) response.task.description = '';
+            if(response.task.deadline_date === undefined) response.task.deadline_date = '';
 
-            showSavedTask('nestedRoot', task);
+            showSavedTask('nestedRoot', response);
 
             // if(data.parent_id !== '0') {
             //     // show in modal page
