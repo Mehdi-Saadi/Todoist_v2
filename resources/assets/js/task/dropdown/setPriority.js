@@ -19,18 +19,22 @@ export function setPriority(priority, taskId, selectedBtn) {
     switch (priority) {
         case 1:
             taskCircle.style.color = '#db4035';
+            taskCircle.firstElementChild.style.background = '#db403514';
             data.color = '#db4035';
             break;
         case 2:
             taskCircle.style.color = '#ff9933';
+            taskCircle.firstElementChild.style.background = '#ff993314';
             data.color = '#ff9933';
             break;
         case 3:
             taskCircle.style.color = '#4073ff';
+            taskCircle.firstElementChild.style.background = '#4073ff14';
             data.color = '#4073ff';
             break;
         case 4:
             taskCircle.style.color = '#808080';
+            taskCircle.firstElementChild.style.background = '#80808014';
             data.color = '#808080';
     }
     ajaxRequest('put', '/task/update/color', data, function () {});
