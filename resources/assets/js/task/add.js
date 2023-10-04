@@ -209,6 +209,8 @@ function addTask(taskFormId) {
             }
             handleDropdowns();
             toastAlert('', 'Task created');
+        }, function (message) {
+            toastAlert('error', `${message.responseJSON.message}`);
         });
 
         // set inputs to default value
