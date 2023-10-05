@@ -19,13 +19,14 @@
             <hr class="my-1 ml-8">
             <div class="ml-8 @if($labelsIsClose === true) hidden @endif" id="labels-root" data-is-close="@if($labelsIsClose === true){{ 'true' }}@else{{ 'false' }}@endif">
                 @foreach(auth()->user()->labels->sortBy('order') as $label)
-                    <div class="grid grid-cols-9 border rounded-lg mt-1 group" id="{{ $label->id }}">
-                        <a href="{{ route('label', $label->id) }}" class="flex items-center col-span-8 py-2 pl-3" wire:navigate>
+                    <div class="flex items-center border rounded-lg mt-1 group" id="{{ $label->id }}">
+                        <x-icon.handle class="w-6 h-6 cursor-move invisible group-hover:visible hidden md:block"/>
+                        <a href="{{ route('label', $label->id) }}" class="flex grow items-center py-2" wire:navigate>
                             <x-icon.tag class="w-6 h-6 mr-1" style="color: {{ $label->color }}"/>
                             <span class="text-gray-800">{{ $label->name }}</span>
                         </a>
                         {{-- tools section --}}
-                        <div class="hidden md:flex invisible md:group-hover:visible col-span-1 py-2 pr-3">
+                        <div class="hidden md:flex invisible md:group-hover:visible py-2 pr-3">
                             <x-button.header-tool title="Add to favorites" class="p-1"><x-icon.heart class="w-5 h-5"/></x-button.header-tool>
                             <x-button.header-tool title="Edit label" class="p-1"><x-icon.pencil class="w-5 h-5"/></x-button.header-tool>
                             <x-button.header-tool title="Delete label" class="p-1" onclick="deleteLabel({{ $label->id }}, '{{ $label->name }}')"><x-icon.trash class="w-5 h-5"/></x-button.header-tool>
