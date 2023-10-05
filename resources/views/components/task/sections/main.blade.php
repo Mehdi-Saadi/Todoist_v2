@@ -1,7 +1,7 @@
 <div class="flex flex-col group cursor-pointer">
     <div class="flex justify-between">
         <div class="flex items-center">
-            <x-icon.handle class="w-6 h-6 cursor-grab active:cursor-grabbing invisible group-hover:visible hidden md:block"/>
+            <x-icon.handle class="w-6 h-6 cursor-move invisible group-hover:visible hidden md:block"/>
             {{-- circle --}}
             {{ $slot }}
             {{-- name --}}
