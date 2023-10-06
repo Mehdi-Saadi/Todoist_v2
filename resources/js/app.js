@@ -61,6 +61,8 @@ document.addEventListener('livewire:navigated', () => {
 import '../assets/js/task/add';
 import {deleteTask} from "../assets/js/task/delete";
 window.deleteTask = deleteTask;
+import {setDone} from "../assets/js/task/circle/setDone.js";
+window.setDone = setDone;
 
 // task form scripts
 import {showForm, hideForm} from "../assets/js/task/form/showAndHide";
