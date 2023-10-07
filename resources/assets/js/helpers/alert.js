@@ -19,5 +19,5 @@ export function toastAlert(icon, title) {
     Toast.fire({
         icon: icon,
         title: title,
-    })
+    });
 }

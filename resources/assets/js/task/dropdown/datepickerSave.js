@@ -1,12 +1,12 @@
-import {ajaxRequest} from "../../helpers/ajaxRequest.js";
-import {DAY_NAMES} from "../../helpers/dayAndMonthNames.js";
-import {toastAlert} from "../../helpers/alert.js";
-import {setTitleForDeadlineField} from "../helpers/datepicker/setTitleForDeadlineField.js";
-import {calendar_dot_4} from "../helpers/datepicker/calendarDotSVG.js";
-import {nextMonth, previousMonth} from "../helpers/datepicker/navigate.js";
-import {initDatepicker} from "../helpers/datepicker/initDatepicker.js";
-import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions.js";
-import {controlDate} from "../helpers/datepicker/controlDate.js";
+import {ajaxRequest} from "../../helpers/ajaxRequest";
+import {DAY_NAMES} from "../../helpers/dayAndMonthNames";
+import {toastAlert} from "../../helpers/alert";
+import {setTitleForDeadlineField} from "../helpers/datepicker/setTitleForDeadlineField";
+import {calendar_dot_4} from "../helpers/datepicker/calendarDotSVG";
+import {nextMonth, previousMonth} from "../helpers/datepicker/navigate";
+import {initDatepicker} from "../helpers/datepicker/initDatepicker";
+import {isPassedDay, isSelected, isToday} from "../helpers/datepicker/displayConditions";
+import {controlDate} from "../helpers/datepicker/controlDate";
 
 export function datepickerSave(taskID, deadlineDate = '') {
     return {

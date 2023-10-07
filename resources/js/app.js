@@ -61,7 +61,7 @@ document.addEventListener('livewire:navigated', () => {
 import '../assets/js/task/add';
 import {deleteTask} from "../assets/js/task/delete";
 window.deleteTask = deleteTask;
-import {setDone} from "../assets/js/task/circle/setDone.js";
+import {setDone} from "../assets/js/task/circle/setDone";
 window.setDone = setDone;
 
 // task form scripts
@@ -81,17 +81,17 @@ import {datepickerSelect} from "../assets/js/task/form/datepickerSelect";
 window.datepickerSelect = datepickerSelect;
 import {MONTH_NAMES} from "../assets/js/helpers/dayAndMonthNames";
 window.MONTH_NAMES = MONTH_NAMES;
-import {selectLabel} from "../assets/js/task/form/selectLabel.js";
+import {selectLabel} from "../assets/js/task/form/selectLabel";
 window.selectLabel = selectLabel;
 
 // end task scripts
 
 // filters and labels scripts
 import "../assets/js/filters-labels/addLabel";
-import {deleteLabel} from "../assets/js/filters-labels/deleteLabel.js";
+import {deleteLabel} from "../assets/js/filters-labels/deleteLabel";
 window.deleteLabel = deleteLabel;
 // sort labels only when user visits its page
-import {destroyLabelSort, labelResort, labelSort} from "../assets/js/filters-labels/sort.js";
+import {destroyLabelSort, labelResort, labelSort} from "../assets/js/filters-labels/sort";
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.href.includes('filters-labels')) {
         labelSort();
@@ -108,18 +108,18 @@ document.addEventListener('livewire:navigated', () => {
     }, 50);
 });
 
-import {toggleItems} from "../assets/js/filters-labels/toggleItems.js";
+import {toggleItems} from "../assets/js/filters-labels/toggleItems";
 window.toggleItems = toggleItems;
 
-import {hideAndResetLabelForm} from "../assets/js/filters-labels/hideAndResetForm.js";
+import {hideAndResetLabelForm} from "../assets/js/filters-labels/hideAndResetForm";
 window.hideAndResetLabelForm = hideAndResetLabelForm;
 
 // show and hide modal script
-import {showModal, hideModal} from "../assets/js/helpers/showAndHideModal.js";
+import {showModal, hideModal} from "../assets/js/helpers/showAndHideModal";
 window.showModal = showModal;
 window.hideModal = hideModal;
 
-import {selectColor} from "../assets/js/filters-labels/selectColor.js";
+import {selectColor} from "../assets/js/filters-labels/selectColor";
 window.selectColor = selectColor;
 
 // end filters and labels scripts
